@@ -459,6 +459,86 @@
 
   strong { font-weight: 600; }
 
+  /* ─── EMAIL GATE ─── */
+  #gate-overlay {
+    position: fixed; inset: 0;
+    background: rgba(28,26,22,0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+  }
+
+  #gate-box {
+    background: var(--surface);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    padding: 2.5rem 2.5rem 2rem;
+    max-width: 420px; width: 100%;
+    box-shadow: 0 8px 40px rgba(28,26,22,0.2);
+    text-align: center;
+  }
+
+  #gate-logo {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 800; color: #fff;
+    margin: 0 auto 1.25rem;
+  }
+
+  #gate-title {
+    font-size: 22px; font-weight: 700;
+    color: var(--text); letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  #gate-sub {
+    font-size: 13.5px; color: var(--text-2);
+    line-height: 1.65; margin-bottom: 1.75rem;
+  }
+
+  #gate-form { display: flex; flex-direction: column; gap: 10px; }
+
+  #gate-form input {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    padding: 11px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--text);
+    outline: none;
+    width: 100%;
+    transition: border-color 0.15s;
+  }
+
+  #gate-form input:focus { border-color: var(--accent); background: #fff; }
+
+  #gate-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; font-weight: 600;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    transition: opacity 0.15s;
+    margin-top: 2px;
+  }
+
+  #gate-btn:hover { opacity: 0.88; }
+  #gate-btn:disabled { opacity: 0.5; cursor: default; }
+
+  #gate-fine {
+    font-size: 11.5px; color: var(--text-3);
+    margin-top: 14px; line-height: 1.6;
+  }
+
   /* ─── EMAIL CAPTURE ─── */
   .email-capture {
     background: var(--accent-light);
@@ -530,6 +610,21 @@
 </style>
 </head>
 <body>
+<!-- EMAIL GATE -->
+<div id="gate-overlay">
+  <div id="gate-box">
+    <div id="gate-logo">K</div>
+    <div id="gate-title">Kinnect Investment Memo</div>
+    <div id="gate-sub">Enter your name and email to access the Friends &amp; Family round materials.</div>
+    <div id="gate-form">
+      <input type="text" id="gate-name" placeholder="Your name" autocomplete="name" required>
+      <input type="email" id="gate-email" placeholder="Your email" autocomplete="email" required>
+      <button id="gate-btn" type="button" onclick="gateSubmit()">View Memo →</button>
+    </div>
+    <div id="gate-fine">By entering, you confirm you're an accredited investor or family/friend of the founding team. This memo is confidential.</div>
+  </div>
+</div>
+
 <div class="page">
 
   <!-- HEADER -->
@@ -1140,39 +1235,118 @@
 </div><!-- /page -->
 
 <script>
-  // Time-on-page tracking — sends a beacon when visitor leaves
-  (function() {
-    var start = Date.now();
-    var sent = false;
+(function() {
+  var STORAGE_KEY = 'kinnect_memo_unlocked';
+  var visitorName = '';
+  var visitorEmail = '';
+  var start = Date.now();
 
-    function sendTime() {
-      if (sent) return;
-      sent = true;
-      var seconds = Math.round((Date.now() - start) / 1000);
-      if (seconds < 5) return; // ignore bounces
-      var body = encodeURIComponent(
-        'name=Time+on+Page&email=tracker%40kinnect.club' +
-        '&_subject=' + encodeURIComponent('Investment Memo — ' + seconds + 's visit') +
-        '&message=' + encodeURIComponent('Visitor spent ' + seconds + ' seconds on investment.kinnect.club')
-      );
-      navigator.sendBeacon
-        ? navigator.sendBeacon('https://formsubmit.co/ajax/omar@kinnect.club', new Blob([body], {type:'application/x-www-form-urlencoded'}))
-        : (new Image().src = 'https://formsubmit.co/omar@kinnect.club?' + body);
+  // ── Gate logic ─────────────────────────────────────────────
+  function unlockMemo() {
+    var overlay = document.getElementById('gate-overlay');
+    if (overlay) overlay.style.display = 'none';
+  }
+
+  function gateSubmit() {
+    var nameEl = document.getElementById('gate-name');
+    var emailEl = document.getElementById('gate-email');
+    var btn = document.getElementById('gate-btn');
+
+    var name = nameEl ? nameEl.value.trim() : '';
+    var email = emailEl ? emailEl.value.trim() : '';
+
+    if (!name || !email || !email.includes('@')) {
+      if (emailEl) emailEl.focus();
+      return;
     }
 
-    window.addEventListener('beforeunload', sendTime);
-    document.addEventListener('visibilitychange', function() {
-      if (document.visibilityState === 'hidden') sendTime();
-    });
+    btn.disabled = true;
+    btn.textContent = 'Opening…';
 
-    // Thank you state
-    if (window.location.search.indexOf('thankyou=1') !== -1) {
-      var form = document.getElementById('invest-form');
-      if (form) {
-        form.innerHTML = '<div style="font-size:14px;font-weight:600;color:var(--accent);padding:8px 0;">✓ Got it — Omar will be in touch soon.</div>';
+    visitorName = name;
+    visitorEmail = email;
+
+    // Notify Omar immediately
+    notify(
+      name + ' (' + email + ') opened the investment memo',
+      'Investment Memo — New View: ' + name,
+      name, email
+    );
+
+    // Store so returning visits skip the gate
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({name: name, email: email, ts: Date.now()})); } catch(e){}
+
+    unlockMemo();
+  }
+
+  // Expose to onclick
+  window.gateSubmit = gateSubmit;
+
+  // Allow Enter key in gate inputs
+  document.addEventListener('keydown', function(e) {
+    var overlay = document.getElementById('gate-overlay');
+    if (overlay && overlay.style.display !== 'none' && e.key === 'Enter') gateSubmit();
+  });
+
+  // ── Notify helper (FormSubmit AJAX endpoint) ────────────────
+  function notify(message, subject, name, email) {
+    var data = new FormData();
+    data.append('name', name || 'Visitor');
+    data.append('email', email || 'noreply@kinnect.club');
+    data.append('message', message);
+    data.append('_subject', subject);
+    data.append('_captcha', 'false');
+    fetch('https://formsubmit.co/ajax/omar@kinnect.club', {method:'POST', body:data})
+      .catch(function(){});
+  }
+
+  // ── Time-on-page tracking ───────────────────────────────────
+  var timeSent = false;
+  function sendTime() {
+    if (timeSent) return;
+    timeSent = true;
+    var seconds = Math.round((Date.now() - start) / 1000);
+    if (seconds < 10) return;
+    var name = visitorName || 'Unknown visitor';
+    var email = visitorEmail || 'noreply@kinnect.club';
+    notify(
+      name + ' spent ' + seconds + ' seconds reading the investment memo on investment.kinnect.club',
+      'Investment Memo — ' + seconds + 's read by ' + name,
+      name, email
+    );
+  }
+
+  window.addEventListener('beforeunload', sendTime);
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') sendTime();
+  });
+
+  // ── On load: check if already unlocked ─────────────────────
+  window.addEventListener('DOMContentLoaded', function() {
+    try {
+      var stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        var data = JSON.parse(stored);
+        // Valid for 30 days
+        if (data && data.ts && (Date.now() - data.ts) < 30 * 24 * 60 * 60 * 1000) {
+          visitorName = data.name || '';
+          visitorEmail = data.email || '';
+          unlockMemo();
+          return;
+        }
       }
-    }
-  })();
+    } catch(e){}
+    // Show gate (already visible by default via CSS)
+  });
+
+  // ── Bottom form thank-you state ─────────────────────────────
+  if (window.location.search.indexOf('thankyou=1') !== -1) {
+    window.addEventListener('DOMContentLoaded', function() {
+      var form = document.getElementById('invest-form');
+      if (form) form.innerHTML = '<div style="font-size:14px;font-weight:600;color:var(--accent);padding:8px 0;">✓ Got it — Omar will be in touch soon.</div>';
+    });
+  }
+})();
 </script>
 
 </body>
