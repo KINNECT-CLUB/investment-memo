@@ -4,138 +4,517 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kinnect — Investment Memo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --bg: #F5F0E8;
+    --surface: #FFFFFF;
+    --surface-2: #FAF7F3;
+    --border: #E6DFD3;
+    --border-2: #EDE8DF;
+    --text: #1C1A16;
+    --text-2: #5C5751;
+    --text-3: #9C9790;
+    --accent: #5E7034;
+    --accent-light: #EFF3E6;
+    --dark: #1C1A16;
+    --shadow: 0 1px 3px rgba(28,26,22,0.06), 0 4px 16px rgba(28,26,22,0.05);
+    --shadow-sm: 0 1px 2px rgba(28,26,22,0.05), 0 2px 8px rgba(28,26,22,0.04);
+  }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f2f1ec; color: #1a1a18; line-height: 1.6; }
-  .page { max-width: 880px; margin: 2.5rem auto; background: #fff; border-radius: 12px; border: 0.5px solid #d8d7d0; overflow: hidden; }
 
-  /* HEADER */
-  .header { padding: 2rem 2.5rem 1.5rem; border-bottom: 0.5px solid #e8e7e1; display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; }
-  .logo-mark { width: 52px; height: 52px; border-radius: 12px; background: #1a1a18; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: #fff; flex-shrink: 0; letter-spacing: -0.5px; }
-  .company-name { font-size: 22px; font-weight: 700; color: #1a1a18; margin-bottom: 4px; letter-spacing: -0.4px; }
-  .tagline { font-size: 13.5px; color: #666660; max-width: 500px; line-height: 1.55; }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-  .chip { font-size: 11px; padding: 3px 9px; border-radius: 20px; border: 0.5px solid #d8d7d0; color: #666660; background: #f8f7f4; }
-  .chip-dark { background: #1a1a18; color: #fff; border-color: #1a1a18; }
-  .header-right { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
-  .meta-label { font-size: 10.5px; color: #999996; letter-spacing: 0.03em; }
-  .meta-val { font-size: 13.5px; font-weight: 600; color: #1a1a18; }
-  .ext-link { font-size: 12px; color: #1a1a18; text-decoration: none; border-bottom: 0.5px solid #d8d7d0; }
-  .ext-link:hover { border-bottom-color: #1a1a18; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-  /* BODY */
+  .page {
+    max-width: 900px;
+    margin: 2.5rem auto;
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(28,26,22,0.06), 0 12px 40px rgba(28,26,22,0.08);
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    padding: 2.25rem 2.5rem 2rem;
+    border-bottom: 1px solid var(--border-2);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    background: var(--surface);
+  }
+
+  .logo-mark {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+    letter-spacing: -0.5px;
+  }
+
+  .company-name {
+    font-size: 24px; font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    margin-bottom: 5px;
+  }
+
+  .tagline {
+    font-size: 14px; color: var(--text-2);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  .chips {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 12px;
+  }
+
+  .chip {
+    font-size: 11px; font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    color: var(--text-3);
+    background: var(--surface-2);
+  }
+
+  .chip-accent {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .header-right {
+    text-align: right;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 140px;
+  }
+
+  .meta-label { font-size: 10px; color: var(--text-3); letter-spacing: 0.04em; text-transform: uppercase; }
+  .meta-val { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; margin-top: 1px; }
+  .meta-hero { font-size: 22px; font-weight: 800; color: var(--accent); letter-spacing: -0.5px; }
+
+  .ext-link {
+    font-size: 12px; color: var(--text-2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: border-color 0.15s;
+  }
+  .ext-link:hover { border-bottom-color: var(--text-2); }
+
+  /* ─── BODY ─── */
   .body { padding: 0 2.5rem 2.5rem; }
-  .section { margin-top: 2rem; }
-  .section-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #999996; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 0.5px solid #e8e7e1; }
 
-  /* ICP CALLOUT */
-  .icp-box { background: #1a1a18; border-radius: 10px; padding: 1.1rem 1.5rem; color: #fff; margin-top: 1.5rem; }
-  .icp-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #888884; margin-bottom: 8px; }
-  .icp-text { font-size: 13px; line-height: 1.75; color: #e8e7e1; }
+  .section { margin-top: 2.25rem; }
+
+  .section-title {
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--text-3);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-2);
+  }
+
+  /* ─── ICP ─── */
+  .icp-box {
+    background: var(--dark);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    color: #fff;
+    margin-top: 1.75rem;
+  }
+
+  .icp-label {
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #888884; margin-bottom: 10px;
+  }
+
+  .icp-text {
+    font-size: 14px; line-height: 1.8; color: #E0DDD5;
+  }
+
   .icp-text strong { color: #fff; }
 
-  /* THESIS */
-  .thesis { background: #f8f7f4; border-radius: 10px; padding: 1.25rem 1.5rem; font-size: 13.5px; line-height: 1.85; color: #1a1a18; border-left: 3px solid #1a1a18; }
+  /* ─── THESIS ─── */
+  .thesis {
+    background: var(--surface-2);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    font-size: 14px; line-height: 1.9;
+    color: var(--text);
+    border-left: 3px solid var(--accent);
+    box-shadow: var(--shadow-sm);
+  }
 
-  /* CARDS */
-  .card { background: #fff; border: 0.5px solid #e0dfd8; border-radius: 10px; padding: 1rem 1.25rem; }
-  .card p { font-size: 13px; color: #2a2a28; line-height: 1.75; }
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  /* ─── CARDS ─── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
 
-  /* METRICS */
-  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-  .metric-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .m-card { background: #f8f7f4; border-radius: 8px; padding: 1rem 1.1rem; }
-  .m-card.dark { background: #1a1a18; }
-  .m-val { font-size: 26px; font-weight: 700; color: #1a1a18; letter-spacing: -0.5px; }
+  .card p { font-size: 13.5px; color: var(--text-2); line-height: 1.8; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+  /* ─── METRICS ─── */
+  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .metric-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+  .m-card {
+    background: var(--surface-2);
+    border-radius: 12px;
+    padding: 1.25rem 1.4rem;
+    border: 1px solid var(--border-2);
+  }
+
+  .m-card.accent { background: var(--accent); border-color: var(--accent); }
+  .m-card.dark { background: var(--dark); border-color: var(--dark); }
+
+  .m-val {
+    font-size: 44px; font-weight: 800;
+    color: var(--text);
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+
+  .m-card.accent .m-val,
   .m-card.dark .m-val { color: #fff; }
-  .m-desc { font-size: 11.5px; color: #666660; margin-top: 4px; line-height: 1.5; }
-  .m-card.dark .m-desc { color: #aaa9a3; }
 
-  /* TEAM */
-  .team-intro { background: #f8f7f4; border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 12px; font-size: 13px; font-weight: 600; color: #1a1a18; line-height: 1.6; }
-  .team-row { display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-bottom: 0.5px solid #f0efe9; }
+  .m-desc {
+    font-size: 12px; color: var(--text-3);
+    margin-top: 6px; line-height: 1.5;
+  }
+
+  .m-card.accent .m-desc { color: rgba(255,255,255,0.7); }
+  .m-card.dark .m-desc { color: rgba(255,255,255,0.55); }
+
+  /* ─── TEAM ─── */
+  .team-intro {
+    background: var(--surface-2);
+    border-radius: 12px;
+    padding: 1rem 1.4rem;
+    margin-bottom: 14px;
+    font-size: 13.5px; font-weight: 600;
+    color: var(--text);
+    line-height: 1.6;
+    border: 1px solid var(--border-2);
+  }
+
+  .team-row {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-2);
+  }
+
   .team-row:last-of-type { border-bottom: none; padding-bottom: 4px; }
-  .avatar { width: 38px; height: 38px; border-radius: 50%; background: #f2f1ec; color: #1a1a18; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 0.5px solid #d8d7d0; }
-  .team-name { font-size: 13px; font-weight: 600; color: #1a1a18; }
-  .team-role { font-size: 11.5px; color: #999996; margin-top: 1px; }
-  .team-bio { font-size: 12px; color: #555553; margin-top: 4px; line-height: 1.6; }
 
-  /* PLATFORM SECTION */
-  .platform-banner { background: #1a1a18; border-radius: 10px; padding: 1.25rem 1.5rem; color: #fff; margin-bottom: 12px; }
-  .platform-banner-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px; line-height: 1.4; }
-  .platform-banner-body { font-size: 12.5px; color: #aaa9a3; line-height: 1.7; }
+  .avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(94,112,52,0.2);
+  }
 
-  /* TABLES */
+  .team-name { font-size: 13.5px; font-weight: 600; color: var(--text); }
+  .team-role { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+  .team-bio { font-size: 12.5px; color: var(--text-2); margin-top: 5px; line-height: 1.65; }
+
+  /* ─── PLATFORM ─── */
+  .platform-banner {
+    background: var(--dark);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+
+  .platform-banner-title {
+    font-size: 17px; font-weight: 700;
+    color: #fff; margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+
+  .platform-banner-body {
+    font-size: 13px; color: #A8A49D; line-height: 1.75;
+  }
+
+  /* ─── COMPETITION TABLE ─── */
   .comp-table { width: 100%; font-size: 12px; border-collapse: collapse; }
-  .comp-table th { text-align: left; font-size: 10px; font-weight: 700; color: #999996; text-transform: uppercase; letter-spacing: 0.06em; padding: 6px 10px; border-bottom: 0.5px solid #e8e7e1; }
-  .comp-table td { padding: 8px 10px; border-bottom: 0.5px solid #f0efe9; color: #2a2a28; vertical-align: middle; }
+
+  .comp-table th {
+    text-align: left; font-size: 10px; font-weight: 700;
+    color: var(--text-3); text-transform: uppercase; letter-spacing: 0.07em;
+    padding: 7px 10px; border-bottom: 1px solid var(--border-2);
+  }
+
+  .comp-table td {
+    padding: 9px 10px; border-bottom: 1px solid var(--border-2);
+    color: var(--text-2); vertical-align: middle;
+  }
+
   .comp-table tr:last-child td { border-bottom: none; }
-  .comp-table .ours td { background: #f2f1ec; font-weight: 600; }
+  .comp-table .ours td { background: var(--accent-light); color: var(--text); font-weight: 600; }
 
-  /* BADGES */
-  .badge { display: inline-block; font-size: 10.5px; padding: 2px 7px; border-radius: 20px; font-weight: 500; }
-  .b-dark { background: #1a1a18; color: #fff; }
-  .b-mid { background: #f2f1ec; color: #1a1a18; border: 0.5px solid #d8d7d0; }
-  .b-light { background: #f8f7f4; color: #888884; border: 0.5px solid #e0dfd8; }
-  .b-outline { background: transparent; color: #888884; border: 0.5px solid #d8d7d0; }
+  /* ─── BADGES ─── */
+  .badge {
+    display: inline-block; font-size: 10.5px;
+    padding: 2px 8px; border-radius: 20px; font-weight: 500;
+  }
 
-  /* RISKS */
-  .risk-row { display: flex; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid #f0efe9; align-items: flex-start; }
+  .b-dark { background: var(--dark); color: #fff; }
+  .b-accent { background: var(--accent); color: #fff; }
+  .b-mid { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+  .b-outline { background: transparent; color: var(--text-3); border: 1px solid var(--border); }
+
+  /* ─── RISKS / VC ROWS ─── */
+  .risk-row {
+    display: flex; gap: 14px;
+    padding: 12px 0; border-bottom: 1px solid var(--border-2);
+    align-items: flex-start;
+  }
+
   .risk-row:last-child { border-bottom: none; }
-  .risk-dot { width: 6px; height: 6px; border-radius: 50%; background: #888884; margin-top: 6px; flex-shrink: 0; }
-  .risk-title { font-size: 13px; font-weight: 600; color: #1a1a18; }
-  .risk-body { font-size: 12px; color: #666660; margin-top: 2px; line-height: 1.6; }
 
-  /* CAP TABLE */
-  .cap-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 0.5px solid #f0efe9; }
+  .risk-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 7px; flex-shrink: 0;
+  }
+
+  .risk-title { font-size: 13.5px; font-weight: 600; color: var(--text); }
+  .risk-body { font-size: 12.5px; color: var(--text-2); margin-top: 3px; line-height: 1.65; }
+
+  /* ─── CAP TABLE ─── */
+  .cap-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid var(--border-2);
+  }
+
   .cap-row:last-of-type { border-bottom: none; }
-  .cap-name { font-size: 13px; font-weight: 500; color: #1a1a18; }
-  .cap-detail { font-size: 11.5px; color: #999996; }
-  .bar-bg { width: 70px; height: 4px; background: #f0efe9; border-radius: 3px; overflow: hidden; display: inline-block; margin-right: 8px; vertical-align: middle; }
-  .bar-fill { height: 4px; background: #1a1a18; border-radius: 3px; }
+  .cap-name { font-size: 13.5px; font-weight: 500; color: var(--text); }
+  .cap-detail { font-size: 12px; color: var(--text-3); margin-top: 1px; }
 
-  /* ASK BOX */
-  .ask-box { background: #1a1a18; border-radius: 12px; padding: 1.5rem; color: #fff; }
-  .ask-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; letter-spacing: -0.3px; }
-  .ask-sub { font-size: 13px; color: #aaa9a3; margin-bottom: 16px; }
-  .ask-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .ask-col-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #666660; margin-bottom: 8px; }
-  .ask-list { font-size: 12.5px; color: #d4d3cc; line-height: 2; }
+  .bar-bg {
+    width: 60px; height: 3px;
+    background: var(--border-2);
+    border-radius: 3px; overflow: hidden;
+    display: inline-block; margin-right: 8px; vertical-align: middle;
+  }
+
+  .bar-fill { height: 3px; background: var(--accent); border-radius: 3px; }
+
+  /* ─── ASK BOX ─── */
+  .ask-box {
+    background: var(--dark);
+    border-radius: 16px;
+    padding: 2rem 2rem 1.75rem;
+    color: #fff;
+  }
+
+  .ask-hero {
+    font-size: 52px; font-weight: 800;
+    color: #fff; letter-spacing: -2px;
+    line-height: 1; margin-bottom: 6px;
+  }
+
+  .ask-sub { font-size: 13.5px; color: #888884; margin-bottom: 22px; line-height: 1.6; }
+
+  .ask-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  .ask-col-title {
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: #666660; margin-bottom: 10px;
+  }
+
+  .ask-list { font-size: 13px; color: #C8C4BC; line-height: 2.1; }
   .ask-list strong { color: #fff; }
 
-  /* FLYWHEEL */
-  .flywheel-row { display: flex; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid #f0efe9; align-items: flex-start; }
+  /* ─── FLYWHEEL ─── */
+  .flywheel-row {
+    display: flex; gap: 12px;
+    padding: 9px 0; border-bottom: 1px solid var(--border-2);
+    align-items: flex-start;
+  }
+
   .flywheel-row:last-child { border-bottom: none; }
-  .flywheel-num { width: 22px; height: 22px; border-radius: 50%; background: #1a1a18; color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
 
-  /* UNIT ECONOMICS */
-  .ue-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 0.5px solid #f0efe9; }
+  .flywheel-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff; font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* ─── UNIT ECONOMICS ─── */
+  .ue-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 9px 0; border-bottom: 1px solid var(--border-2);
+  }
+
   .ue-row:last-child { border-bottom: none; }
-  .ue-label { font-size: 13px; color: #555553; }
-  .ue-val { font-size: 14px; font-weight: 600; color: #1a1a18; }
+  .ue-label { font-size: 13px; color: var(--text-2); }
+  .ue-val { font-size: 14px; font-weight: 700; color: var(--text); }
 
-  /* PARTNER ROW */
-  .partner-row { display: flex; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid #f0efe9; align-items: flex-start; }
+  /* ─── PARTNER ─── */
+  .partner-row {
+    display: flex; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid var(--border-2);
+    align-items: flex-start;
+  }
+
   .partner-row:last-child { border-bottom: none; }
-  .partner-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: #f2f1ec; color: #1a1a18; border-radius: 4px; padding: 2px 7px; flex-shrink: 0; margin-top: 2px; white-space: nowrap; }
 
-  /* AI ARCH */
-  .ai-loop-row { display: flex; gap: 12px; padding: 12px 0; border-bottom: 0.5px solid #e8e7e1; align-items: flex-start; }
+  .partner-tag {
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 6px; padding: 3px 8px;
+    flex-shrink: 0; margin-top: 2px; white-space: nowrap;
+  }
+
+  /* ─── AI ARCHITECTURE ─── */
+  .ai-loop-row {
+    display: flex; gap: 14px;
+    padding: 14px 0; border-bottom: 1px solid var(--border-2);
+    align-items: flex-start;
+  }
+
   .ai-loop-row:last-child { border-bottom: none; }
-  .ai-loop-num { font-size: 11px; font-weight: 700; color: #fff; background: #1a1a18; border-radius: 4px; padding: 2px 8px; flex-shrink: 0; margin-top: 2px; letter-spacing: 0.03em; }
-  .ai-loop-title { font-size: 13px; font-weight: 600; color: #1a1a18; }
-  .ai-loop-body { font-size: 12px; color: #555553; margin-top: 3px; line-height: 1.6; }
-  .vc-row { display: flex; gap: 10px; padding: 10px 0; border-bottom: 0.5px solid #f0efe9; align-items: flex-start; }
-  .vc-row:last-child { border-bottom: none; }
-  .vc-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: #1a1a18; color: #fff; border-radius: 4px; padding: 2px 8px; flex-shrink: 0; margin-top: 2px; white-space: nowrap; }
-  .vc-body { font-size: 12px; color: #2a2a28; line-height: 1.6; }
 
-  /* FOOTER */
-  .footer { padding: 1.25rem 2.5rem; border-top: 0.5px solid #e8e7e1; display: flex; justify-content: space-between; font-size: 11px; color: #aaa9a3; }
+  .ai-loop-num {
+    font-size: 11px; font-weight: 700;
+    color: #fff; background: var(--accent);
+    border-radius: 6px; padding: 2px 8px;
+    flex-shrink: 0; margin-top: 2px; letter-spacing: 0.03em;
+  }
+
+  .ai-loop-title { font-size: 13.5px; font-weight: 600; color: var(--text); }
+  .ai-loop-body { font-size: 12.5px; color: var(--text-2); margin-top: 4px; line-height: 1.65; }
+
+  /* ─── QUOTE ─── */
+  .pull-quote {
+    border-left: 3px solid var(--accent);
+    padding: 12px 18px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: var(--text-2);
+    font-style: italic;
+    line-height: 1.7;
+    background: var(--surface-2);
+    border-radius: 0 8px 8px 0;
+  }
+
+  /* ─── NOTE BOX ─── */
+  .note {
+    background: var(--surface-2);
+    border-radius: 10px;
+    padding: 12px 1.4rem;
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.75;
+    border: 1px solid var(--border-2);
+    margin-top: 12px;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    padding: 1.25rem 2.5rem;
+    border-top: 1px solid var(--border-2);
+    display: flex; justify-content: space-between;
+    font-size: 11.5px; color: var(--text-3);
+  }
 
   strong { font-weight: 600; }
+
+  /* ─── EMAIL CAPTURE ─── */
+  .email-capture {
+    background: var(--accent-light);
+    border: 1px solid rgba(94,112,52,0.2);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .email-capture-text {
+    font-size: 13.5px; font-weight: 600;
+    color: var(--text); flex: 1;
+    min-width: 200px;
+  }
+
+  .email-capture-sub {
+    font-size: 12px; color: var(--text-3);
+    font-weight: 400; margin-top: 2px;
+  }
+
+  .email-form {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+
+  .email-form input {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    outline: none;
+    width: 220px;
+  }
+
+  .email-form input:focus { border-color: var(--accent); }
+
+  .email-form button {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+  }
+
+  .email-form button:hover { opacity: 0.88; }
 
   @media (max-width: 640px) {
     .header { flex-direction: column; }
@@ -144,6 +523,9 @@
     .metric-grid-4, .metric-grid-3 { grid-template-columns: 1fr 1fr; }
     .page { margin: 0; border-radius: 0; }
     .body, .header { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .m-val { font-size: 34px; }
+    .ask-hero { font-size: 38px; }
+    .email-capture { flex-direction: column; }
   }
 </style>
 </head>
@@ -152,35 +534,42 @@
 
   <!-- HEADER -->
   <div class="header">
-    <div style="display:flex;gap:14px;align-items:flex-start;flex:1;">
+    <div style="display:flex;gap:16px;align-items:flex-start;flex:1;">
       <div class="logo-mark">K</div>
       <div>
         <div class="company-name">Kinnect</div>
-        <div class="tagline">The private home for families — stories, documents, and connection in one place. So families don't have to lose anything.</div>
+        <div class="tagline">The private home for families — stories, documents, and daily connection. So no one gets forgotten.</div>
         <div class="chips">
-          <span class="chip">Chicago, IL &nbsp;·&nbsp; Delaware C-Corp</span>
-          <span class="chip chip-dark">Friends &amp; Family Round</span>
-          <span class="chip">Family · Consumer Platform</span>
+          <span class="chip">Chicago, IL · Delaware C-Corp</span>
+          <span class="chip chip-accent">Friends &amp; Family Round</span>
+          <span class="chip">Family Platform · Consumer</span>
           <span class="chip">iOS · Android · Web</span>
         </div>
       </div>
     </div>
     <div class="header-right">
-      <div><div class="meta-label">Raising</div><div class="meta-val">$1,000,000</div></div>
-      <div><div class="meta-label">Raised to date</div><div class="meta-val">$250K+</div></div>
-      <div><div class="meta-label">Platforms</div><div class="meta-val">iOS · Android · Web</div></div>
-      <div><a href="https://www.kinnect.club" class="ext-link" target="_blank">kinnect.club ↗</a></div>
+      <div>
+        <div class="meta-label">Raising</div>
+        <div class="meta-hero">$1M</div>
+      </div>
+      <div>
+        <div class="meta-label">Raised to Date</div>
+        <div class="meta-val">$250K+</div>
+      </div>
+      <div style="margin-top:4px;">
+        <a href="https://www.kinnect.club" class="ext-link" target="_blank">kinnect.club ↗</a>
+      </div>
     </div>
   </div>
 
   <div class="body">
 
-    <!-- ICP -->
-    <div class="icp-box" style="margin-top:1.5rem;">
+    <!-- WHO WE SERVE -->
+    <div class="icp-box">
       <div class="icp-label">Who We Serve</div>
       <div class="icp-text">
-        <strong>The Family Connector</strong> — typically 35–55, first-generation or multicultural, managing aging parents while raising kids. The one who calls grandma. Who organizes the reunions. Who holds two generations of family history and knows, somewhere, that it's all at risk. Not looking for another social feed — looking for a <strong>private, trusted home</strong> for the people who matter most.<br style="margin-bottom:6px;">
-        <span style="color:#888884;font-size:12px;margin-top:6px;display:block;">Secondary: Anyone who has just experienced a loss or near-loss — a diagnosis, a death, a friend gone too soon — and feels the urgent need to capture what's left before more disappears.</span>
+        <strong>The Family Connector</strong> — 35–55, first-generation or multicultural, managing aging parents while raising kids. The one who calls grandma. Who holds two generations of history and knows it's all at risk. Not looking for another feed. Looking for a <strong>private, trusted home</strong> for the people who matter most.
+        <div style="color:#75706A;font-size:12.5px;margin-top:10px;">Secondary: Anyone who has just experienced a loss or near-loss — a diagnosis, a death, a friend gone too soon — and feels the urgent need to capture what's left.</div>
       </div>
     </div>
 
@@ -188,75 +577,52 @@
     <div class="section">
       <div class="section-title">Investment Thesis</div>
       <div class="thesis">
-        Every competitor solves the <strong>Head</strong> — wills, documents, estate tools. Nobody solves the <strong>Heart</strong> — stories, voices, the feeling of being remembered. Kinnect solves both. But the bigger opportunity is what sits underneath: <strong>Octopus</strong>, Kinnect's AI family intelligence layer, is positioned to become the connector across the family data ecosystem — not another silo adding to the fragmentation families already face. As Kinnect accumulates voice data, relationship graphs, and document history (with explicit consent), it becomes the trusted intermediary that understands a family's full picture and surfaces what they need across products, partners, and life stages. Think of it like an operating system for family legacy — private, permissioned, and compounding daily in a way no incumbent can replicate retroactively.<br><br>
-        Incumbents failed because each solved one dimension: StoryWorth sends emails. Ancestry tracks dead relatives. Trust &amp; Will ignores emotion. Meta sells your memories to advertisers. None built daily habit, family-wide trust, and a growing archive together. Kinnect does — and it does it across iOS, Android, and web, meeting the global majority of families where they actually are. With 1,300+ members, 84 Stripe-verified paying families, 490 Storybooks, 279 irreplaceable voice recordings, and 4 signed B2B partnerships — all built with $250K+ in under two years — Kinnect is no longer a thesis. It is an early, real business with a moat that compounds every day a family uses it.
+        Every competitor solves the <strong>Head</strong> — wills, documents, estate tools. Nobody solves the <strong>Heart</strong> — stories, voices, the feeling of being remembered. Kinnect solves both. The bigger opportunity is what sits underneath: <strong>Octopus</strong>, Kinnect's AI family intelligence layer, is positioned to become the trusted connector across the family data ecosystem — not another silo adding to the fragmentation families already face.<br><br>
+        As Kinnect accumulates voice data, relationship graphs, and document history (with explicit consent), it becomes the intermediary that understands a family's full picture and surfaces what they need across products, partners, and life stages — like an operating system for family legacy, private, permissioned, and compounding daily. With <strong>1,300+ members, 84 paying families, 490 Storybooks, 4 signed B2B partnerships</strong> — all built with $250K in under two years — this is no longer a thesis. It's an early business with a moat that compounds every day.
       </div>
     </div>
 
     <!-- TRACTION -->
     <div class="section">
       <div class="section-title">Traction</div>
-      <div class="metric-grid-4" style="margin-bottom:10px;">
-        <div class="m-card">
-          <div class="m-val">1,300+</div>
-          <div class="m-desc">Members — 100% organic, zero paid acquisition</div>
+      <div class="metric-grid-4" style="margin-bottom:12px;">
+        <div class="m-card accent">
+          <div class="m-val">84</div>
+          <div class="m-desc">Stripe-verified paying families</div>
         </div>
         <div class="m-card">
-          <div class="m-val">84</div>
-          <div class="m-desc">Annual paying families — Stripe verified</div>
+          <div class="m-val">1,300+</div>
+          <div class="m-desc">Members — 100% organic</div>
         </div>
         <div class="m-card">
           <div class="m-val">490</div>
-          <div class="m-desc">Storybooks created — content that cannot be migrated</div>
+          <div class="m-desc">Storybooks created</div>
         </div>
         <div class="m-card">
           <div class="m-val">279</div>
-          <div class="m-desc">Voice recordings shared — each one raises the switching cost</div>
+          <div class="m-desc">Voice recordings — irreplaceable</div>
         </div>
       </div>
       <div class="metric-grid-4">
         <div class="m-card">
-          <div class="m-val">95</div>
-          <div class="m-desc">Completed onboardings — users who finished the full intake</div>
-        </div>
-        <div class="m-card">
           <div class="m-val">80%</div>
-          <div class="m-desc">Nudge onboarding completion rate</div>
+          <div class="m-desc">Nudge onboarding completion</div>
         </div>
         <div class="m-card">
           <div class="m-val">4</div>
-          <div class="m-desc">Signed B2B distribution partnerships</div>
+          <div class="m-desc">Signed B2B partnerships</div>
         </div>
         <div class="m-card">
           <div class="m-val">2,750</div>
-          <div class="m-desc">Email subscribers — warm pipeline for V2 reactivation</div>
+          <div class="m-desc">Email subscribers — warm pipeline</div>
+        </div>
+        <div class="m-card dark">
+          <div class="m-val">240</div>
+          <div class="m-desc">SEO posts/month via AI Growth Agent</div>
         </div>
       </div>
-      <div style="margin-top:10px;padding:10px 1.25rem;background:#f8f7f4;border-radius:8px;font-size:12px;color:#555553;line-height:1.7;border:0.5px solid #e8e7e1;">
-        <strong>Goal of this raise:</strong> 1 new member = 3 new families. Invite-only exclusivity drives word-of-mouth. The Family Tree feature (30 nodes per member) turns every signup into a network multiplier. The $1M gets Kinnect to 5,000–10,000 paying families and $500K–$1M ARR — seed-ready in 18 months.
-      </div>
-    </div>
-
-    <!-- PLATFORMS -->
-    <div class="section">
-      <div class="section-title">Platforms</div>
-      <div class="platform-banner">
-        <div class="platform-banner-title">Every family. Every device. No exceptions.</div>
-        <div class="platform-banner-body">Kinnect is live on iOS, Android, and web — three platforms, two native apps, shipped in 9 months. Most of the world's families aren't on iOS. They're on Android. On web browsers. On devices not yet built. Kinnect was designed from day one to meet them there — across devices, languages, and life stages. This isn't a pivot. This is the plan. And it's already built.</div>
-      </div>
-      <div class="three-col">
-        <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#999996;margin-bottom:8px;">iOS</div>
-          <p>Currently in App Store review. V2 rebuilt with Octopus AI at the core. 1,300+ historical installs, 84 paying families, 490 Storybooks from V1 base alone.</p>
-        </div>
-        <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#999996;margin-bottom:8px;">Android</div>
-          <p>Live. Purpose-built native product. Opens Kinnect to the global majority — the families most underserved by the current memory preservation market.</p>
-        </div>
-        <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#999996;margin-bottom:8px;">Web</div>
-          <p>Live. Accessibility-first for older family members who aren't on mobile. Family Tree management, Vault access, and document handling built for the desktop experience.</p>
-        </div>
+      <div class="note">
+        <strong>1 new member = 3 new families.</strong> Invite-only exclusivity drives word-of-mouth. The Family Tree (30 nodes per member) turns every signup into a network multiplier. This $1M gets Kinnect to 5,000–10,000 paying families and $500K–$1M ARR — seed-ready in 18 months.
       </div>
     </div>
 
@@ -264,7 +630,7 @@
     <div class="section">
       <div class="section-title">Team</div>
       <div class="team-intro">
-        Shipped 3 platforms and signed 4 partnerships in 9 months. Ex-Nike, GitHub, National Geographic. Multilingual team reflecting the diverse families building Kinnect today.
+        3 platforms and 4 partnerships shipped in 9 months. Ex-Nike, GitHub, National Geographic. A multilingual team built to reflect the diverse families Kinnect serves.
       </div>
       <div class="card">
         <div class="team-row">
@@ -272,23 +638,23 @@
           <div>
             <div class="team-name">Omar Alvarez — Founder &amp; CEO &nbsp;<a href="https://www.linkedin.com/in/omarthinks" class="ext-link" target="_blank">LinkedIn ↗</a></div>
             <div class="team-role">Ex-Nike · Levi's · LVMH · Hilton · Hims &amp; Hers · Kendo</div>
-            <div class="team-bio">Gay, first-generation Latino founder — Puerto Rican and Guatemalan roots — representing less than 1% of VC-backed founders. Built Kinnect after watching his grandfather live with dementia for ten years, and as his close friend Brandon was dying from cancer. Their stories live on here. Brings a decade of consumer brand-building and product GTM expertise across the world's best brands. D1 track &amp; cross-country athlete (DePaul University).</div>
+            <div class="team-bio">Gay, first-generation Latino founder — Puerto Rican and Guatemalan roots — representing less than 1% of VC-backed founders. Built Kinnect watching his grandfather disappear to dementia for ten years, and while his close friend Brandon was dying from cancer. Their stories live on here. D1 track &amp; cross-country athlete (DePaul). A decade of consumer brand-building and product GTM across the world's best brands.</div>
           </div>
         </div>
         <div class="team-row">
           <div class="avatar">BW</div>
           <div>
             <div class="team-name">Byron Walker — CTO</div>
-            <div class="team-role">Currently: GitHub · Technical leadership &amp; engineering</div>
-            <div class="team-bio">Black technical lead and family man who has been brought back to life twice — two near-death experiences that left him thinking deeply about what he will leave behind for his family. Byron doesn't just build Kinnect for users — he builds it for himself. Brings institutional engineering rigor and lived urgency to a product that demands both.</div>
+            <div class="team-role">Currently: GitHub · Engineering leadership</div>
+            <div class="team-bio">Black technical lead and family man, brought back to life twice. Two near-death experiences left him thinking deeply about what he'll leave behind for his children. Byron doesn't build Kinnect for users — he builds it for himself. Institutional engineering rigor meets lived urgency.</div>
           </div>
         </div>
         <div class="team-row">
           <div class="avatar">KN</div>
           <div>
             <div class="team-name">Kelsey Nowakowski — Head of Partnerships</div>
-            <div class="team-role">Ex-National Geographic · Strategic development &amp; distribution</div>
-            <div class="team-bio">Based in Puerto Rico — grounded in the reality of multicultural, geographically distributed families and helping ensure Kinnect's product and partnerships reflect families across the full United States and beyond. Responsible for all 4 signed B2B agreements secured in under 9 months.</div>
+            <div class="team-role">Ex-National Geographic · Strategic development</div>
+            <div class="team-bio">Based in Puerto Rico. Ensures Kinnect reflects multicultural, geographically distributed families at every layer. Responsible for all 4 signed B2B agreements in under 9 months.</div>
           </div>
         </div>
         <div class="team-row">
@@ -298,8 +664,31 @@
             <div class="team-role">UX &amp; brand design across all platforms</div>
           </div>
         </div>
-        <div style="margin-top:12px;font-size:12px;color:#666660;border-top:0.5px solid #f0efe9;padding-top:12px;line-height:1.7;">
-          <strong style="color:#1a1a18;">Extended team (8):</strong> AI Infrastructure — Shikhar Kaul (Carnegie Mellon); Product Design — Akshay Madhavan (Carnegie Mellon); Android — Akhil (University of Illinois); iOS — Maruf (Cornell), Jisu (UC Berkeley); Web Engineering — 3 engineers. Full team available on request.
+        <div style="margin-top:12px;font-size:12px;color:var(--text-3);border-top:1px solid var(--border-2);padding-top:12px;line-height:1.7;">
+          <strong style="color:var(--text);">Extended team (8):</strong> AI Infrastructure — Shikhar Kaul (CMU); Design — Akshay Madhavan (CMU); Android — Akhil (UIUC); iOS — Maruf (Cornell), Jisu (UC Berkeley); Web Engineering — 3 engineers.
+        </div>
+      </div>
+    </div>
+
+    <!-- PLATFORMS -->
+    <div class="section">
+      <div class="section-title">Platforms</div>
+      <div class="platform-banner">
+        <div class="platform-banner-title">Every family. Every device. No exceptions.</div>
+        <div class="platform-banner-body">Live on iOS, Android, and web — three platforms, two native apps, shipped in 9 months. Most of the world's families aren't on iOS. They're on Android. On web. Kinnect was designed from day one to meet them there.</div>
+      </div>
+      <div class="three-col">
+        <div class="card">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:8px;">iOS</div>
+          <p>In App Store review. V2 rebuilt with Octopus AI at the core. 1,300+ historical installs and 84 paying families from V1 alone.</p>
+        </div>
+        <div class="card">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:8px;">Android</div>
+          <p>Live. Purpose-built native product. Opens Kinnect to the global majority — families most underserved by the memory preservation market.</p>
+        </div>
+        <div class="card">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:8px;">Web</div>
+          <p>Live. Accessibility-first for older family members. Family Tree management, Vault access, and document handling built for desktop.</p>
         </div>
       </div>
     </div>
@@ -309,63 +698,49 @@
       <div class="section-title">Why Now</div>
       <div class="three-col">
         <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#999996;margin-bottom:8px;">Privacy Exodus</div>
-          <p>Families are abandoning public social media for safe spaces. 77% of Americans don't trust social platforms with personal data. Regulatory pressure is accelerating — EU, state-level US laws, and pending federal legislation all push in Kinnect's direction.</p>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:8px;">Privacy Exodus</div>
+          <p>77% of Americans don't trust social platforms with personal data. Regulatory pressure is accelerating. Families are leaving public feeds for private spaces.</p>
         </div>
         <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#999996;margin-bottom:8px;">Trust Vacuum</div>
-          <p>Less than 1 in 10 trust social apps with family memories. 63% say accessing a deceased loved one's accounts was harder than expected. Families need infrastructure — not another platform that owns their data.</p>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:8px;">Trust Vacuum</div>
+          <p>Less than 1 in 10 trust social apps with family memories. 63% say accessing a deceased loved one's accounts was harder than expected. Families need infrastructure.</p>
         </div>
         <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#999996;margin-bottom:8px;">AI Changes Everything</div>
-          <p>For the first time, AI can personalize a family's experience daily — surfacing what's missing, prompting the right conversation at the right moment, connecting families to the right products. Kinnect built that layer. No incumbent can replicate accumulated family intelligence.</p>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:8px;">AI Changes Everything</div>
+          <p>For the first time, AI can personalize a family's experience daily — surfacing what's missing at the right moment. No incumbent can replicate accumulated family intelligence.</p>
         </div>
       </div>
-      <div style="margin-top:10px;padding:10px 1.25rem;background:#f8f7f4;border-radius:8px;font-size:12.5px;color:#555553;line-height:1.7;border:0.5px solid #e8e7e1;">
-        <strong style="color:#1a1a18;">The stat that started it:</strong> 86% of retirees say values and life lessons matter more than money. Only 21% have documented them. 59% have never recorded a conversation with a loved one. <em>"We're one generation away from being forgotten."</em> — Kinnect member, Liz
+      <div class="note">
+        <strong>86%</strong> of retirees say values and life lessons matter more than money. Only <strong>21%</strong> have documented them. <strong>59%</strong> have never recorded a conversation with a loved one. <em>"We're one generation away from being forgotten."</em> — Kinnect member, Liz
       </div>
     </div>
 
-    <!-- MARKET -->
-    <div class="section">
-      <div class="section-title">Market Opportunity</div>
-      <div class="card">
-        <p>
-          <strong>TAM — $50B+:</strong> The combined addressable surface across family memory preservation, private family connection, digital estate/legacy documentation, and family wellness. 50%+ of Americans report feeling lonely — the U.S. Surgeon General declared it a public health epidemic in 2023. Senior living: 15,000+ U.S. communities, 1M+ residents. Estate planning: $1.5B market growing at 12.3% CAGR. Employee benefits/HR wellness: caregiving is a leading productivity issue for employers.<br><br>
-          <strong>SAM — ~$8B:</strong> U.S. families with aging parents or young children actively seeking private digital alternatives to Meta, Google Photos, and Dropbox — a segment expanding rapidly as regulatory and cultural pressure on social media grows.<br><br>
-          <strong>SOM — 18-month target:</strong> 5,000–10,000 paying family memberships ($50/yr × 2 people or $80/yr × family of 5, launching summer 2026) = $250K–$800K ARR from B2C alone. Plus B2B: 1 signed senior living network, FastWill + Gentreo will integrations, brand/hardware partnerships (UNPLUQ, Loop Frames), and an active employee benefits broker channel.<br><br>
-          <strong>$370M+ in adjacent VC</strong> proves investor conviction in this space: Empathy ($162M), Trust &amp; Will ($82.5M), Wealth.com ($84M). None built what Kinnect is building. Empathy solves after loss. Trust &amp; Will does documents only. Wealth.com is advisor-facing. <strong>Nobody has built the intersection of Heart + Head + daily habit + AI layer — until Kinnect.</strong>
-        </p>
-      </div>
-    </div>
-
-    <!-- PLATFORM / PRODUCT -->
+    <!-- PRODUCT -->
     <div class="section">
       <div class="section-title">The Kinnect Platform</div>
-      <div class="card" style="margin-bottom:10px;">
-        <p><strong>No ads. No addictive algorithms. No data sales.</strong> Kinnect is a private, invite-only platform where families connect, record stories, and save generational documents — across iOS, Android, and web. We are not an app. We are a platform and a brand — and our values show in how we build: with partners like UNPLUQ (digital wellness hardware) and Loop Frames (ambient family display) who share our belief that technology should bring families closer, not fragment them further.</p>
-        <ul style="margin-top:12px;padding-left:1.1rem;font-size:13px;color:#2a2a28;line-height:2.1;">
-          <li><strong>Family Tree</strong> — The most inclusive family tree on the market. Each tree starts with 30 nodes. Every node is a potential member, subscriber, and partner referral. Granular privacy controls. Invite-only creates exclusivity; the tree creates belonging. AI surfaces what's missing: "Your daughter doesn't have health insurance on file."</li>
-          <li><strong>Vault</strong> — Secure, multi-user family document storage. Wills, deeds, insurance, medical history, passwords. If a document is missing, Kinnect connects the family to a trusted partner (FastWill, Gentreo) and earns a referral. Revenue for Kinnect. Value for the family. Distribution for the partner.</li>
-          <li><strong>Octopus (AI Layer)</strong> — Family intelligence engine. Learns your family's relationships, patterns, and gaps. Personalized daily prompts, proactive document nudges, and partner connections. As voice data and family graphs accumulate, Octopus becomes the trusted connector between families and the products they need — estate attorneys, insurance, senior care — reducing fragmentation rather than adding to it.</li>
-          <li><strong>Daily Echo</strong> — AI-personalized daily group prompts building a shared story across distance. 490 Storybooks and 279 voice recordings already created from the iOS base alone.</li>
-          <li><strong>Nudge</strong> — Monthly AI-personalized relationship investment program. 80% onboarding completion rate.</li>
-          <li><strong>Printed StoryBook Export</strong> — Physical artifact with QR codes linking to multimedia. High-margin upsell and the most durable Kinnect product: a book that exists in the world.</li>
+      <div class="card" style="margin-bottom:12px;">
+        <p><strong>No ads. No addictive algorithms. No data sales.</strong> A private, invite-only platform where families connect, record stories, and save generational documents — across iOS, Android, and web. Not an app. A platform and a brand — built with partners who share the belief that technology should bring families closer, not fragment them further.</p>
+        <ul style="margin-top:14px;padding-left:1.1rem;font-size:13.5px;color:var(--text-2);line-height:2.15;">
+          <li><strong>Family Tree</strong> — Most inclusive tree on the market. 30 nodes per member. Every node is a potential subscriber and partner referral. AI surfaces what's missing: <em>"Your daughter doesn't have health insurance on file."</em></li>
+          <li><strong>Vault</strong> — Secure family document storage. If a document is missing, Kinnect connects the family to a trusted partner (FastWill, Gentreo). Revenue for Kinnect. Value for the family.</li>
+          <li><strong>Octopus (AI Layer)</strong> — Family intelligence engine. Learns relationships, patterns, and gaps. As voice data and family graphs accumulate, Octopus becomes the trusted connector — reducing fragmentation rather than adding to it.</li>
+          <li><strong>Daily Echo + Nudge</strong> — AI-personalized daily prompts and monthly relationship investment. 490 Storybooks, 279 voice recordings, 80% onboarding completion.</li>
+          <li><strong>Printed StoryBook Export</strong> — High-margin physical artifact with QR codes linking to multimedia. The most durable Kinnect product: a book that exists in the world.</li>
         </ul>
       </div>
     </div>
 
-    <!-- OCTOPUS / DATA VISION -->
+    <!-- PLATFORM VISION -->
     <div class="section">
       <div class="section-title">The Platform Vision — Octopus &amp; Family Intelligence</div>
       <div class="two-col">
         <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#999996;margin-bottom:8px;">The Data Moat</div>
-          <p>Every voice recording, shared document, family tree relationship, and daily Echo response teaches Octopus something no other platform can learn: the full picture of a real family. With explicit family consent, this compounding intelligence becomes Kinnect's deepest asset. Unlike social media data (behavioral, surface-level), Kinnect's data is <strong>intentional, emotional, and generational</strong> — the kind families actively choose to create and protect.</p>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:10px;">The Data Moat</div>
+          <p>Every voice recording, document, family tree relationship, and daily Echo response teaches Octopus something no other platform can learn: the full picture of a real family. <strong>Intentional, emotional, generational</strong> data — the kind families actively choose to create and protect. Unlike behavioral surface-level social data, this compounds into irreplaceable intelligence.</p>
         </div>
         <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#999996;margin-bottom:8px;">The Connector Strategy → Vertical Ownership</div>
-          <p>Phase 1 (now): Kinnect grows its base by being integrated into partners at the moment families need them — senior living move-in, will creation, a new child. No paid media. Partners are distribution AND data signals.<br><br>Phase 2: Octopus surfaces patterns across thousands of families — which documents are consistently missing, which life moments drive the most engagement, which partner categories generate the most value. That insight tells Kinnect <strong>exactly which verticals to build and own directly</strong>, rather than always routing to a third party. The partner ecosystem is the R&D engine for Kinnect's next products.</p>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:10px;">The Connector Strategy</div>
+          <p><strong>Phase 1 (now):</strong> Kinnect grows by being integrated into partners at the moment families need them — senior living move-in, will creation, a new child. No paid media. Partners are distribution AND data signals.<br><br><strong>Phase 2:</strong> Octopus surfaces patterns across thousands of families — which documents are missing, which moments drive engagement, which verticals to build and own directly. The partner ecosystem is the R&amp;D engine for Kinnect's next products.</p>
         </div>
       </div>
     </div>
@@ -375,76 +750,74 @@
       <div class="section-title">The Kinnect Flywheel</div>
       <div class="two-col">
         <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#999996;margin-bottom:8px;">Exclusivity × Inclusivity</div>
-          <p>Invite-only creates exclusivity — early members bring the people who matter most, not random strangers. The Family Tree (30 nodes per member) then creates inclusivity — every person added is a potential new member, a potential subscriber, a potential partner referral. One signup doesn't add one user. It opens an entire family network. Kinnect is designed to be the <strong>most inclusive family-forward platform</strong> on the market, meeting families where they are across the world and across their lifecycle.</p>
-          <div style="margin-top:12px;background:#f8f7f4;border-radius:8px;padding:10px 12px;font-size:12px;color:#555553;font-style:italic;line-height:1.6;border:0.5px solid #e8e7e1;">
-            "You can take your photos to another platform. You can't take grandma's voice. The switching cost isn't inconvenient — it's heartbreaking." — Kinnect member
-          </div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:10px;">Exclusivity × Inclusivity</div>
+          <p>Invite-only creates exclusivity — early members bring the people who matter most, not strangers. The Family Tree creates inclusivity — every person added is a potential member, subscriber, referral. One signup opens an entire family network.</p>
+          <div class="pull-quote">"You can take your photos to another platform. You can't take grandma's voice. The switching cost isn't inconvenient — it's heartbreaking." — Kinnect member</div>
         </div>
         <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#999996;margin-bottom:8px;">The Content Moat — By Month</div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:10px;">Content Moat — By Month</div>
           <div class="flywheel-row">
             <div class="flywheel-num">1</div>
-            <div style="font-size:12px;color:#2a2a28;">Family uploads a will, records first Echo. Already: 490 Storybooks and 279 voice recordings from V1 iOS base.</div>
+            <div style="font-size:12.5px;color:var(--text-2);">First Echo recorded. First document in the Vault. Already: 490 Storybooks and 279 voice recordings from V1 iOS base.</div>
           </div>
           <div class="flywheel-row">
             <div class="flywheel-num">3</div>
-            <div style="font-size:12px;color:#2a2a28;">90 voice recordings. Shared photo albums. Grandma's recipe. Three generations connected.</div>
+            <div style="font-size:12.5px;color:var(--text-2);">90+ voice recordings. Shared photo albums. Three generations connected. Switching cost rising.</div>
           </div>
           <div class="flywheel-row">
             <div class="flywheel-num">6</div>
-            <div style="font-size:12px;color:#2a2a28;">Complete document vault. Octopus has surfaced 5+ missing documents and connected the family to 2+ partners.</div>
+            <div style="font-size:12.5px;color:var(--text-2);">Complete Vault. Octopus has surfaced 5+ missing documents and connected the family to 2+ partners.</div>
           </div>
           <div class="flywheel-row">
             <div class="flywheel-num">12</div>
-            <div style="font-size:12px;color:#2a2a28;font-weight:600;">365 irreplaceable moments. This isn't a platform anymore. It's the family archive. Switching cost: infinite.</div>
+            <div style="font-size:12.5px;color:var(--text-2);font-weight:600;">365 irreplaceable moments. Not a platform anymore. The family archive. Switching cost: infinite.</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- GTM + DISTRIBUTION -->
+    <!-- GTM + PRICING -->
     <div class="section">
       <div class="two-col">
         <div>
           <div class="section-title">Go-to-Market</div>
           <div class="card">
-            <p><strong>Direct (B2C):</strong> Omar's brand background drives high-quality organic content (Instagram, TikTok). Zero paid acquisition to date. Initial wedge: bereaved individuals, caregivers of aging parents, families navigating illness — high-urgency, high word-of-mouth. 1,300+ members organically.</p>
+            <p><strong>Direct (B2C):</strong> Omar's brand background drives high-quality organic content. Zero paid acquisition. Initial wedge: bereaved individuals, caregivers, families navigating illness — high-urgency, high word-of-mouth. 1,300+ members organically.</p>
             <p style="margin-top:10px;"><strong>B2B2C Distribution:</strong> Partners send families at their highest-urgency moments. Our platform keeps them.</p>
-            <div class="card" style="margin-top:10px;border:0.5px solid #e8e7e1;">
+            <div class="card" style="margin-top:12px;border:1px solid var(--border-2);box-shadow:none;">
               <div class="partner-row">
                 <div class="partner-tag">Senior Living</div>
-                <div style="font-size:12px;color:#2a2a28;line-height:1.55;"><strong>K4Connect</strong> — partnership integration started. Meeting with Papa CEO scheduled. Pipeline: 15,000+ communities, 1M+ residents.</div>
+                <div style="font-size:12.5px;color:var(--text-2);line-height:1.6;"><strong>K4Connect</strong> — integration started. Pipeline: 15,000+ communities, 1M+ residents.</div>
               </div>
               <div class="partner-row">
                 <div class="partner-tag">Wills &amp; Estate</div>
-                <div style="font-size:12px;color:#2a2a28;line-height:1.55;"><strong>FastWill + Gentreo</strong> — two will platform software integrations. Vault sync active. Referral revenue model. Targeting additional estate, banks, and insurance partners for distribution.</div>
+                <div style="font-size:12.5px;color:var(--text-2);line-height:1.6;"><strong>FastWill + Gentreo</strong> — two will platform integrations. Vault sync. Referral revenue model.</div>
               </div>
               <div class="partner-row">
                 <div class="partner-tag">Brand / Hardware</div>
-                <div style="font-size:12px;color:#2a2a28;line-height:1.55;"><strong>UNPLUQ + Loop Frames</strong> — 1 DTC brand partnership targeting 2 hardware consumer products. These partnerships are values-aligned: screen-time reduction and ambient family connection.</div>
+                <div style="font-size:12.5px;color:var(--text-2);line-height:1.6;"><strong>UNPLUQ + Loop Frames</strong> — values-aligned: screen-time reduction and ambient family connection.</div>
               </div>
               <div class="partner-row">
                 <div class="partner-tag">Employee Benefits</div>
-                <div style="font-size:12px;color:#2a2a28;line-height:1.55;">Active broker relationship established. Targeting HR/wellness programs where caregiving and family responsibility are recognized productivity concerns. Seeking additional broker support.</div>
+                <div style="font-size:12.5px;color:var(--text-2);line-height:1.6;">Active broker relationship. Targeting HR/wellness where caregiving is a recognized productivity issue.</div>
               </div>
             </div>
           </div>
         </div>
         <div>
-          <div class="section-title">Business Model &amp; Pricing</div>
+          <div class="section-title">Business Model</div>
           <div class="card">
-            <p><strong>kinnect.club — Membership starting at $0.</strong> We want every family in Kinnect. Membership is the brand. Pricing scales with use and family size — not paywalls.</p>
-            <div style="margin-top:12px;background:#f8f7f4;border-radius:8px;padding:12px;border:0.5px solid #e8e7e1;">
-              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#999996;margin-bottom:8px;">Launching Summer 2026</div>
-              <div style="font-size:13px;color:#1a1a18;line-height:2.1;">
+            <p><strong>kinnect.club — Membership starting at $0.</strong> Every family belongs in Kinnect. Pricing scales with use and family size — no paywalls.</p>
+            <div class="note" style="margin-top:12px;">
+              <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:10px;">Launching Summer 2026</div>
+              <div style="font-size:14px;color:var(--text);line-height:2.2;">
                 <strong>$50/yr</strong> — 2 members<br>
                 <strong>$80/yr</strong> — Family of 5<br>
-                <span style="font-size:12px;color:#666660;">At 1,000 members → pricing switch</span>
+                <span style="font-size:12px;color:var(--text-3);">Pricing unlocks at 1,000 members</span>
               </div>
             </div>
-            <p style="margin-top:12px;"><strong>B2B:</strong> Senior living at $2K–$5K/community/year. Will/estate referral revenue share. Brand/hardware partnership deals. Employee benefits licensing.</p>
-            <p style="margin-top:10px;"><strong>Future:</strong> Printed StoryBook export (high-margin physical product). Octopus partner API (connecting families to financial, legal, insurance, healthcare partners with family permission). <strong>No advertising. Ever.</strong> Privacy is the brand promise and the structural moat.</p>
+            <p style="margin-top:12px;"><strong>B2B:</strong> Senior living at $2K–$5K/community/yr. Will/estate referral revenue. Brand/hardware partnership deals. Employee benefits licensing.</p>
+            <p style="margin-top:10px;"><strong>Future:</strong> Printed StoryBook export (high-margin physical). Octopus partner API. <strong>No advertising. Ever.</strong></p>
           </div>
         </div>
       </div>
@@ -461,22 +834,21 @@
           <div class="ue-row"><span class="ue-label">CAC (blended)</span><span class="ue-val">$25–$40</span></div>
           <div class="ue-row"><span class="ue-label">Payback period</span><span class="ue-val">2–4 months</span></div>
           <div class="ue-row"><span class="ue-label">LTV at 3% churn</span><span class="ue-val">~$400</span></div>
-          <div class="ue-row"><span class="ue-label">LTV : CAC</span><span class="ue-val">10–16×</span></div>
+          <div class="ue-row"><span class="ue-label">LTV : CAC</span><span class="ue-val" style="color:var(--accent);">10–16×</span></div>
         </div>
         <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#999996;margin-bottom:10px;">18-Month Milestones (this $1M)</div>
-          <ul style="padding-left:1.1rem;font-size:12.5px;color:#2a2a28;line-height:2.1;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:12px;">18-Month Milestones (this $1M)</div>
+          <ul style="padding-left:1.1rem;font-size:13px;color:var(--text-2);line-height:2.2;">
             <li>All 3 platforms fully live and reactivated</li>
             <li><strong>5,000–10,000 paying family memberships</strong></li>
             <li>1 signed senior living contract (K4Connect)</li>
-            <li>FastWill + Gentreo integrations live and generating revenue</li>
-            <li>1 DTC brand partnership live (UNPLUQ or Loop Frames)</li>
+            <li>FastWill + Gentreo integrations generating revenue</li>
             <li><strong>$500K–$1M ARR</strong></li>
             <li>Sub-5% monthly churn via content-driven retention</li>
             <li><strong>Seed-ready ($5–8M) in 18 months</strong></li>
           </ul>
-          <div style="margin-top:10px;font-size:11.5px;color:#999996;border-top:0.5px solid #f0efe9;padding-top:8px;">
-            Use of funds: 50% Engineering (Octopus, Vault, Family Tree) · 25% Growth &amp; Partnerships · 15% Team &amp; Ops · 10% Reserve
+          <div style="margin-top:12px;font-size:11.5px;color:var(--text-3);border-top:1px solid var(--border-2);padding-top:10px;">
+            Use of funds: 50% Engineering · 25% Growth &amp; Partnerships · 15% Team &amp; Ops · 10% Reserve
           </div>
         </div>
       </div>
@@ -485,36 +857,36 @@
     <!-- AI ARCHITECTURE -->
     <div class="section">
       <div class="section-title">Kinnect is an AI-Architected Company</div>
-      <div style="background:#1a1a18;border-radius:10px;padding:1.1rem 1.5rem;margin-bottom:12px;">
-        <div style="font-size:13px;color:#e8e7e1;line-height:1.75;">Most companies talk about AI. Kinnect runs on it — across product, growth, and infrastructure. A team of 12 ships at the output of a team three times the size because AI is embedded in every layer. This is how we built 3 platforms, 4 partnerships, and 240 pieces of published content per month on $250K.</div>
+      <div style="background:var(--dark);border-radius:12px;padding:1.5rem 1.75rem;margin-bottom:14px;">
+        <div style="font-size:14px;color:#E0DDD5;line-height:1.85;">Most companies talk about AI. Kinnect runs on it — across product, growth, and infrastructure. AI is embedded in every layer, letting a small team ship at the output of one three times its size. This is how we built 3 platforms, 4 partnerships, and 240 pieces of published content per month on $250K.</div>
       </div>
-      <div class="card" style="padding:0.75rem 1.25rem;">
+      <div class="card" style="padding:0.75rem 1.5rem;">
         <div class="ai-loop-row">
           <div class="ai-loop-num">01</div>
           <div>
             <div class="ai-loop-title">Octopus — Family Intelligence Engine</div>
-            <div class="ai-loop-body">Real-time family relationship graph + document gap detection. Octopus learns a family's context and surfaces what's missing at the right moment — "Your daughter was just added; she doesn't have health insurance on file." Routes families to the right partner, generates revenue, and gets smarter with every interaction. The intelligence is irreversible: no competitor can replicate what Octopus has already learned about a family.</div>
+            <div class="ai-loop-body">Real-time family relationship graph + document gap detection. Octopus learns a family's context and surfaces what's missing at the right moment. Routes families to the right partner, generates revenue, and gets smarter with every interaction. The intelligence is irreversible: no competitor can replicate what Octopus has already learned.</div>
           </div>
         </div>
         <div class="ai-loop-row">
           <div class="ai-loop-num">02</div>
           <div>
-            <div class="ai-loop-title">Growth Agent — Autonomous LLM Content Pipeline</div>
-            <div class="ai-loop-body">4 Cloud Run jobs running continuously. Publishes <strong>240 SEO-optimized posts per month</strong> to kinnect.club — zero human intervention, zero incremental cost. Built for both traditional search AND LLM-indexed discovery. As AI assistants (Claude, ChatGPT, Perplexity, Google AI Overviews) become the primary way families discover products, Kinnect is in the training data, the live web index, and the answer. Most companies at this stage are still optimizing for Google. Kinnect is building for the post-search world.</div>
+            <div class="ai-loop-title">Growth Agent — Autonomous Content Pipeline</div>
+            <div class="ai-loop-body">4 Cloud Run jobs running continuously. Publishes <strong>240 SEO-optimized posts per month</strong> to kinnect.club — zero human intervention, zero incremental cost. Built for both traditional search and LLM-indexed discovery. As AI assistants become the primary way families discover products, Kinnect is already in the training data, the live index, and the answer.</div>
           </div>
         </div>
         <div class="ai-loop-row">
           <div class="ai-loop-num">03</div>
           <div>
             <div class="ai-loop-title">Echo AI — Personalized Daily Connection</div>
-            <div class="ai-loop-body">AI-generated daily prompts delivered via Customer.io, tailored to each specific family relationship. Not a generic notification — a contextual nudge that knows your family's history and what would be meaningful today. 80% onboarding completion rate is proof the personalization works. As voice data compounds, Echo becomes the most relevant daily communication any family receives.</div>
+            <div class="ai-loop-body">AI-generated daily prompts tailored to each specific family relationship via Customer.io. Not a generic notification — a contextual nudge that knows your family's history. 80% onboarding completion rate proves the personalization works. As voice data compounds, Echo becomes the most relevant daily communication any family receives.</div>
           </div>
         </div>
         <div class="ai-loop-row">
           <div class="ai-loop-num">04</div>
           <div>
-            <div class="ai-loop-title">The LLM Discovery Bet — Why This Is the Right Infrastructure for 2026</div>
-            <div class="ai-loop-body">The next generation of family product discovery won't happen through Google search — it will happen through AI assistants answering "what should I use to preserve my family's stories?" Kinnect has already built the infrastructure to win that question: 240 indexed posts/month, structured family data that LLMs can understand and cite, and a brand narrative that answers the emotional query precisely. This is an organic moat being built right now, compounding monthly, with no paid media required.</div>
+            <div class="ai-loop-title">The LLM Discovery Bet</div>
+            <div class="ai-loop-body">The next generation of family product discovery won't happen through Google — it will happen through AI assistants answering <em>"what should I use to preserve my family's stories?"</em> Kinnect is already building to win that question: 240 indexed posts/month, structured family data LLMs can cite, and a brand narrative that answers the emotional query precisely. An organic moat compounding monthly at no paid media cost.</div>
           </div>
         </div>
       </div>
@@ -523,30 +895,43 @@
     <!-- VC LENS -->
     <div class="section">
       <div class="section-title">The Questions Every Investor Will Ask</div>
-      <div class="card" style="padding:0.75rem 1.25rem;">
+      <div class="card" style="padding:0.75rem 1.5rem;">
         <div class="risk-row">
           <div class="risk-dot"></div>
-          <div><div class="risk-title">"Show me the founder who can't NOT build this."</div><div class="risk-body">Omar watched his grandfather lose his memories to dementia for ten years and built Kinnect while his friend Brandon was dying. Byron has been brought back to life twice and thinks about what he'll leave his children. This isn't a market bet — it's a mission. The team is living the problem.</div></div>
+          <div><div class="risk-title">"Show me the founder who can't NOT build this."</div><div class="risk-body">Omar watched his grandfather lose his memories to dementia for ten years and built Kinnect while his friend Brandon was dying. Byron has been brought back to life twice and thinks about what he'll leave his children. This is a mission, not a market bet. The team is living the problem.</div></div>
         </div>
         <div class="risk-row">
           <div class="risk-dot"></div>
-          <div><div class="risk-title">"Who is this actually for, and can you reach them?"</div><div class="risk-body">First-generation, multicultural, geographically distributed families — the majority of American families — are the most underserved by existing memory platforms. Omar is one. Kelsey, based in Puerto Rico, ensures the product reflects these families at every layer. Multilingual platform. Android-first global reach. This is the community others overlook.</div></div>
+          <div><div class="risk-title">"Who is this actually for, and can you reach them?"</div><div class="risk-body">First-generation, multicultural, geographically distributed families — the majority of American families — are the most underserved by existing memory platforms. Omar is one. Kelsey, based in Puerto Rico, ensures the product reflects these families at every layer. Multilingual platform. Android-first global reach.</div></div>
         </div>
         <div class="risk-row">
           <div class="risk-dot"></div>
-          <div><div class="risk-title">"Where's the technical moat?"</div><div class="risk-body">Octopus is a family intelligence graph that compounds daily. The Growth Agent publishes 240 LLM-indexed posts/month at zero marginal cost. Voice recordings and relationship data create a content moat no incumbent can replicate retroactively. The AI infrastructure was built first — the product is built on top of it.</div></div>
+          <div><div class="risk-title">"Where's the technical moat?"</div><div class="risk-body">Octopus is a family intelligence graph that compounds daily. The Growth Agent publishes 240 LLM-indexed posts/month at zero marginal cost. Voice recordings and relationship data create a content moat no incumbent can replicate retroactively. The AI infrastructure was built first — the product runs on top of it.</div></div>
         </div>
         <div class="risk-row">
           <div class="risk-dot"></div>
-          <div><div class="risk-title">"What about data privacy liability?"</div><div class="risk-body">Kinnect's data model is consent-first and family-owned. Families explicitly choose what to store, who sees it, and what Octopus can access. Kinnect is the trustee, not the owner. No advertising monetization means no incentive to exploit the data. Privacy is the product promise AND the business model — they reinforce each other.</div></div>
+          <div><div class="risk-title">"What about data privacy liability?"</div><div class="risk-body">Kinnect's data model is consent-first and family-owned. Families choose what to store, who sees it, and what Octopus can access. No advertising means no incentive to exploit the data. Privacy is the product promise AND the business model — they reinforce each other.</div></div>
         </div>
+      </div>
+    </div>
+
+    <!-- MARKET -->
+    <div class="section">
+      <div class="section-title">Market Opportunity</div>
+      <div class="card">
+        <p>
+          <strong>TAM — $50B+:</strong> Family memory preservation, private family connection, digital estate documentation, and family wellness. 50%+ of Americans report feeling lonely — the U.S. Surgeon General declared it a public health epidemic in 2023. Senior living: 15,000+ communities, 1M+ residents. Estate planning: $1.5B market at 12.3% CAGR. Employee benefits: caregiving is a leading productivity issue for employers.<br><br>
+          <strong>SAM — ~$8B:</strong> U.S. families with aging parents or young children actively seeking private digital alternatives to Meta, Google Photos, and Dropbox.<br><br>
+          <strong>SOM — 18-month:</strong> 5,000–10,000 paying families at $50–$80/yr = $250K–$800K ARR from B2C alone. Plus B2B: senior living, will/estate, brand, and HR wellness channels.<br><br>
+          <strong>$370M+ in adjacent VC</strong> proves investor conviction: Empathy ($162M), Trust &amp; Will ($82.5M), Wealth.com ($84M). None built what Kinnect is building. <strong>Nobody has built Heart + Head + daily habit + AI layer. Until now.</strong>
+        </p>
       </div>
     </div>
 
     <!-- COMPETITION -->
     <div class="section">
       <div class="section-title">Competitive Landscape</div>
-      <div class="card" style="padding:0.75rem 1.25rem;margin-bottom:10px;">
+      <div class="card" style="padding:0.75rem 1.5rem;margin-bottom:12px;">
         <table class="comp-table">
           <thead>
             <tr>
@@ -563,11 +948,11 @@
             <tr class="ours">
               <td>Kinnect ✦</td>
               <td>Memory + docs + daily connection</td>
-              <td><span class="badge b-dark">Yes</span></td>
-              <td><span class="badge b-dark">Yes</span></td>
-              <td><span class="badge b-dark">Octopus</span></td>
-              <td><span class="badge b-dark">Yes</span></td>
-              <td><span class="badge b-dark">iOS + Android + Web</span></td>
+              <td><span class="badge b-accent">Yes</span></td>
+              <td><span class="badge b-accent">Yes</span></td>
+              <td><span class="badge b-accent">Octopus</span></td>
+              <td><span class="badge b-accent">Yes</span></td>
+              <td><span class="badge b-accent">iOS + Android + Web</span></td>
             </tr>
             <tr>
               <td>StoryWorth</td>
@@ -576,7 +961,7 @@
               <td><span class="badge b-outline">No</span></td>
               <td><span class="badge b-outline">No</span></td>
               <td><span class="badge b-mid">Yes</span></td>
-              <td><span class="badge b-outline">Web + print only</span></td>
+              <td><span class="badge b-outline">Web + print</span></td>
             </tr>
             <tr>
               <td>Remento</td>
@@ -615,6 +1000,15 @@
               <td><span class="badge b-mid">Web + mobile</span></td>
             </tr>
             <tr>
+              <td>kinnect.org</td>
+              <td>Children's literacy nonprofit</td>
+              <td><span class="badge b-outline">Unrelated</span></td>
+              <td><span class="badge b-outline">No</span></td>
+              <td><span class="badge b-outline">No</span></td>
+              <td><span class="badge b-mid">N/A</span></td>
+              <td><span class="badge b-outline">Web only</span></td>
+            </tr>
+            <tr>
               <td>Meta Groups / Memories</td>
               <td>Broad social sharing</td>
               <td><span class="badge b-outline">Surface only</span></td>
@@ -626,34 +1020,34 @@
           </tbody>
         </table>
       </div>
-      <div style="font-size:12.5px;color:#555553;background:#f8f7f4;border-radius:8px;padding:10px 1.25rem;line-height:1.7;border:0.5px solid #e8e7e1;">
-        <strong style="color:#1a1a18;">The space is fragmented — by design.</strong> Every competitor solved one thing well. Storage tools have no engagement. Social platforms have no privacy. Memory tools have no documents. Estate tools have no emotion. Genealogy platforms sell your DNA. The fragmentation is the problem Kinnect solves — not by doing one more thing, but by becoming the trusted connector between all of them. The switching cost after 12 months of irreplaceable family content is not inconvenient. It's heartbreaking.
+      <div class="note">
+        <strong>The space is fragmented — by design.</strong> Every competitor solved one thing well. Storage tools have no engagement. Social platforms have no privacy. Memory tools have no documents. Estate tools have no emotion. The fragmentation is the problem Kinnect solves — by becoming the trusted connector between all of them. The switching cost after 12 months of irreplaceable family content is not inconvenient. It's heartbreaking.
       </div>
     </div>
 
     <!-- RISKS -->
     <div class="section">
       <div class="section-title">Risks &amp; Mitigants</div>
-      <div class="card" style="padding:0.75rem 1.25rem;">
+      <div class="card" style="padding:0.75rem 1.5rem;">
         <div class="risk-row">
           <div class="risk-dot"></div>
-          <div><div class="risk-title">Consumer distribution at scale</div><div class="risk-body">Consumer platforms face cold-start problems. Mitigant: B2B partnerships (senior living, estate, HR) create high-intent inbound at near-zero CAC. Invite-only exclusivity + the 30-node Family Tree turn every signup into a network multiplier. Goal: 1 new member = 3 new families.</div></div>
+          <div><div class="risk-title">Consumer distribution at scale</div><div class="risk-body">B2B partnerships create high-intent inbound at near-zero CAC. Invite-only exclusivity + 30-node Family Tree turn every signup into a network multiplier.</div></div>
         </div>
         <div class="risk-row">
           <div class="risk-dot"></div>
-          <div><div class="risk-title">Scaling from early traction to mass adoption</div><div class="risk-body">84 paying families is proof it works — this raise is fuel to scale it. iOS and Android launch this month, meeting partner distribution needs and reactivating 1,300+ existing installs and 2,750 email subscribers simultaneously. The momentum from 9 months of building is accelerating into launch, not starting from zero.</div></div>
+          <div><div class="risk-title">Scaling from early traction to mass adoption</div><div class="risk-body">iOS and Android launch this month, meeting partner distribution needs and reactivating 1,300+ existing installs and 2,750 email subscribers. The momentum from 9 months of building is accelerating into launch — not starting from zero.</div></div>
         </div>
         <div class="risk-row">
           <div class="risk-dot"></div>
-          <div><div class="risk-title">Big Tech adjacency</div><div class="risk-body">Meta, Apple, Google could build into private family memory. Mitigant: Kinnect's moat is the irreplaceable content families have already created — voices, stories, documents that cannot be re-recorded or rebuilt. Octopus's family intelligence compounds daily and cannot be replicated retroactively. Trust, not features, is the moat.</div></div>
+          <div><div class="risk-title">Big Tech adjacency</div><div class="risk-body">Kinnect's moat is irreplaceable content families have already created — voices, stories, documents that cannot be re-recorded. Octopus's family intelligence compounds daily and cannot be replicated retroactively. Trust, not features, is the moat.</div></div>
         </div>
         <div class="risk-row">
           <div class="risk-dot"></div>
-          <div><div class="risk-title">Multi-generational UX</div><div class="risk-body">Serving 70-year-old grandparents and 30-year-old grandchildren requires real design discipline. Mitigant: The web platform addresses accessibility for older members. Kelsey's work from Puerto Rico ensures the product reflects diverse, geographically distributed family realities. Multilingual team by design.</div></div>
+          <div><div class="risk-title">Multi-generational UX</div><div class="risk-body">Web platform addresses accessibility for older members. Multilingual team by design. Kelsey ensures the product reflects diverse, geographically distributed family realities.</div></div>
         </div>
         <div class="risk-row">
           <div class="risk-dot"></div>
-          <div><div class="risk-title">Partnership execution</div><div class="risk-body">Signed agreements must become active revenue pipelines. Mitigant: Kelsey (Head of Partnerships, ex-National Geographic) is dedicated to activation. K4Connect integration and FastWill integration are already in progress. 25% of this raise is specifically for Growth &amp; Partnerships execution.</div></div>
+          <div><div class="risk-title">Partnership execution</div><div class="risk-body">Kelsey (ex-National Geographic) is dedicated to activation. K4Connect and FastWill integrations are in progress. 25% of this raise is specifically for Partnerships execution.</div></div>
         </div>
       </div>
     </div>
@@ -661,16 +1055,16 @@
     <!-- THE ASK -->
     <div class="section">
       <div class="ask-box">
-        <div class="ask-title">Raising $1,000,000 — Pre-money SAFE</div>
-        <div class="ask-sub">Investing alongside Techstars, Slauson &amp; Co., and existing angel investors. This is a friends &amp; family round to scale what is already working.</div>
+        <div class="ask-hero">$1,000,000</div>
+        <div class="ask-sub">Pre-money SAFE · Friends &amp; Family Round · Investing alongside Techstars, Slauson &amp; Co., and existing angels</div>
         <div class="ask-grid">
           <div>
             <div class="ask-col-title">Use of Funds</div>
             <div class="ask-list">
               <strong>50%</strong> · Product &amp; Engineering<br>
-              <span style="color:#888884;font-size:11px;">Octopus AI, Vault, Family Tree — all platforms</span><br>
+              <span style="color:#665E56;font-size:11px;">Octopus AI, Vault, Family Tree</span><br>
               <strong>25%</strong> · Growth &amp; Partnerships<br>
-              <span style="color:#888884;font-size:11px;">Activate K4Connect, FastWill, Gentreo pipelines</span><br>
+              <span style="color:#665E56;font-size:11px;">Activate K4Connect, FastWill, Gentreo</span><br>
               <strong>15%</strong> · Team &amp; Operations<br>
               <strong>10%</strong> · Reserve
             </div>
@@ -686,8 +1080,8 @@
             </div>
           </div>
         </div>
-        <div style="margin-top:16px;padding-top:14px;border-top:0.5px solid #333330;font-size:12px;color:#888884;font-style:italic;line-height:1.7;">
-          "Every family has a story worth keeping. We're building the place they keep it." &nbsp;— omar@kinnect.club
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid #2E2C28;font-size:13px;color:#888884;font-style:italic;line-height:1.7;">
+          "Every family has a story worth keeping. We're building the place they keep it." &nbsp;— <span style="color:#A8A49D;">omar@kinnect.club</span>
         </div>
       </div>
     </div>
@@ -695,38 +1089,91 @@
     <!-- CAP TABLE -->
     <div class="section">
       <div class="section-title">Capitalization Table</div>
-      <div class="card" style="padding:0.75rem 1.25rem;">
+      <div class="card" style="padding:0.75rem 1.5rem;">
         <div class="cap-row">
           <div><div class="cap-name">Omar Alvarez — Founder &amp; CEO</div><div class="cap-detail">Majority equity holder</div></div>
           <div><span class="bar-bg"><span class="bar-fill" style="width:72%"></span></span><span class="badge b-mid">~75%+</span></div>
         </div>
         <div class="cap-row">
-          <div><div class="cap-name">Techstars (Rising Stars Fund)</div><div class="cap-detail">Pre-seed · Underrepresented founders program</div></div>
+          <div><div class="cap-name">Techstars (Rising Stars Fund)</div><div class="cap-detail">Pre-seed · Underrepresented founders</div></div>
           <div><span class="bar-bg"><span class="bar-fill" style="width:12%"></span></span><span class="badge b-outline">Est. ~5–8%</span></div>
         </div>
         <div class="cap-row">
-          <div><div class="cap-name">Slauson &amp; Co.</div><div class="cap-detail">Pre-seed · Impact-focused VC · Economic inclusion mandate</div></div>
+          <div><div class="cap-name">Slauson &amp; Co.</div><div class="cap-detail">Pre-seed · Impact-focused VC</div></div>
           <div><span class="bar-bg"><span class="bar-fill" style="width:10%"></span></span><span class="badge b-outline">Est. small %</span></div>
         </div>
         <div class="cap-row">
-          <div><div class="cap-name">Five Two Five</div><div class="cap-detail">Pre-seed · Undisclosed terms</div></div>
+          <div><div class="cap-name">Five Two Five</div><div class="cap-detail">Pre-seed</div></div>
           <div><span class="bar-bg"><span class="bar-fill" style="width:8%"></span></span><span class="badge b-outline">Est. small %</span></div>
         </div>
         <div class="cap-row">
           <div><div class="cap-name">Angel Investors</div><div class="cap-detail">Additional closes — undisclosed</div></div>
           <div><span class="bar-bg"><span class="bar-fill" style="width:6%"></span></span><span class="badge b-outline">Est. small %</span></div>
         </div>
-        <p style="font-size:11px;color:#aaa9a3;margin-top:10px;padding-top:10px;border-top:0.5px solid #f0efe9;">Full cap table and exact allocations available from founder on request. This $1M SAFE is pre-money, investing alongside existing institutional holders.</p>
+        <p style="font-size:11.5px;color:var(--text-3);margin-top:12px;padding-top:10px;border-top:1px solid var(--border-2);">Full cap table available from founder on request. This $1M SAFE is pre-money, investing alongside existing institutional holders.</p>
       </div>
+    </div>
+
+    <!-- EMAIL CAPTURE -->
+    <div class="email-capture">
+      <div>
+        <div class="email-capture-text">Interested in learning more?</div>
+        <div class="email-capture-sub">Leave your email and Omar will follow up directly.</div>
+      </div>
+      <form class="email-form" action="https://formsubmit.co/omar@kinnect.club" method="POST" id="invest-form">
+        <input type="hidden" name="_subject" value="Investment Memo — New Interest">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://investment.kinnect.club?thankyou=1">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
+        <button type="submit">Connect →</button>
+      </form>
     </div>
 
   </div><!-- /body -->
 
   <div class="footer">
-    <span>Kinnect — Investment Memo — Friends &amp; Family Round — April 2026</span>
+    <span>Kinnect · Investment Memo · Friends &amp; Family Round · April 2026</span>
     <span>omar@kinnect.club &nbsp;·&nbsp; <a href="https://www.kinnect.club" class="ext-link" target="_blank">kinnect.club ↗</a></span>
   </div>
 
 </div><!-- /page -->
+
+<script>
+  // Time-on-page tracking — sends a beacon when visitor leaves
+  (function() {
+    var start = Date.now();
+    var sent = false;
+
+    function sendTime() {
+      if (sent) return;
+      sent = true;
+      var seconds = Math.round((Date.now() - start) / 1000);
+      if (seconds < 5) return; // ignore bounces
+      var body = encodeURIComponent(
+        'name=Time+on+Page&email=tracker%40kinnect.club' +
+        '&_subject=' + encodeURIComponent('Investment Memo — ' + seconds + 's visit') +
+        '&message=' + encodeURIComponent('Visitor spent ' + seconds + ' seconds on investment.kinnect.club')
+      );
+      navigator.sendBeacon
+        ? navigator.sendBeacon('https://formsubmit.co/ajax/omar@kinnect.club', new Blob([body], {type:'application/x-www-form-urlencoded'}))
+        : (new Image().src = 'https://formsubmit.co/omar@kinnect.club?' + body);
+    }
+
+    window.addEventListener('beforeunload', sendTime);
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'hidden') sendTime();
+    });
+
+    // Thank you state
+    if (window.location.search.indexOf('thankyou=1') !== -1) {
+      var form = document.getElementById('invest-form');
+      if (form) {
+        form.innerHTML = '<div style="font-size:14px;font-weight:600;color:var(--accent);padding:8px 0;">✓ Got it — Omar will be in touch soon.</div>';
+      }
+    }
+  })();
+</script>
+
 </body>
 </html>
