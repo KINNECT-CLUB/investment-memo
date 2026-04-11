@@ -269,6 +269,47 @@
   }
   .ext-link:hover { border-bottom-color: var(--text-2); }
 
+  /* ── CTA STRIP ────────────────────────────────────────────── */
+  .cta-strip {
+    padding: 12px 2rem;
+    background: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .cta-strip-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+  }
+
+  .cta-strip-text strong { color: #fff; font-weight: 600; }
+
+  .cta-btn {
+    display: inline-block;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 10px;
+    background: #fff;
+    color: var(--text);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+  }
+
+  .cta-btn:hover { opacity: 0.88; }
+
+  @media (max-width: 640px) {
+    .cta-strip { padding: 12px 1.25rem; }
+    .cta-strip-text { font-size: 12.5px; }
+  }
+
   /* ── BODY ─────────────────────────────────────────────────── */
   .body { padding: 2rem 2rem 3rem; background: var(--surface); }
 
@@ -670,6 +711,12 @@
     </div>
   </div>
 
+  <!-- CTA TOP -->
+  <div class="cta-strip">
+    <div class="cta-strip-text"><strong>Want to talk?</strong> 30 minutes with Omar — ask anything.</div>
+    <a href="https://calendly.com/omaralvy/30min" class="cta-btn" target="_blank">Book a call ↗</a>
+  </div>
+
   <div class="body">
 
     <!-- WHO WE SERVE -->
@@ -685,7 +732,7 @@
       <div class="section-title">Investment Thesis</div>
       <div class="thesis">
         Every competitor solves the <strong>Head</strong> — wills, documents, estate tools. Nobody solves the <strong>Heart</strong> — stories, voices, the feeling of being remembered. Kinnect solves both. Underneath the consumer product sits <strong>Octopus</strong> — Kinnect's AI family intelligence layer — positioned to become the trusted connector across the family data ecosystem. Not another silo. The thing that reduces fragmentation for families.<br><br>
-        As voice data, relationship graphs, and document history accumulate (with explicit consent), Octopus becomes the intermediary that understands a family's full picture across products, partners, and life stages. <strong>1,300+ members, 84 paying families, 490 Storybooks, 6 signed partnerships — built with $480K in under two years.</strong> $370M+ in adjacent VC (Empathy, Trust &amp; Will, Wealth.com) proves the space. None of them built this.
+        Nine months ago, Omar rebuilt the team around a sharper vision and a harder commitment. What exists today — the product, the AI infrastructure, the partnerships, the members — was built in that window. <strong>This round is not a bet on what Kinnect might become. It's a bet on what a small team already shipped, and what happens when it has fuel.</strong>
       </div>
     </div>
 
@@ -1010,6 +1057,12 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- CTA BOTTOM -->
+  <div class="cta-strip">
+    <div class="cta-strip-text"><strong>Ready to be part of this?</strong> Book 30 minutes with Omar — no deck, just a real conversation.</div>
+    <a href="https://calendly.com/omaralvy/30min" class="cta-btn" target="_blank">Book a call ↗</a>
   </div>
 
   <div class="footer">
