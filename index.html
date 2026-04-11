@@ -271,8 +271,8 @@
 
   /* ── CTA STRIP ────────────────────────────────────────────── */
   .cta-strip {
-    padding: 12px 2rem;
-    background: var(--text);
+    padding: 13px 2rem;
+    background: var(--navy);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -282,7 +282,7 @@
 
   .cta-strip-text {
     font-size: 13px;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.55);
     line-height: 1.5;
   }
 
@@ -293,17 +293,18 @@
     font-family: inherit;
     font-size: 13px;
     font-weight: 600;
-    padding: 9px 18px;
+    padding: 9px 20px;
     border-radius: 10px;
-    background: #fff;
-    color: var(--text);
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: #fff;
     text-decoration: none;
     white-space: nowrap;
-    transition: opacity 0.15s;
+    transition: background 0.15s;
     flex-shrink: 0;
   }
 
-  .cta-btn:hover { opacity: 0.88; }
+  .cta-btn:hover { background: rgba(255,255,255,0.2); }
 
   @media (max-width: 640px) {
     .cta-strip { padding: 12px 1.25rem; }
@@ -713,8 +714,8 @@
 
   <!-- CTA TOP -->
   <div class="cta-strip">
-    <div class="cta-strip-text"><strong>Want to talk?</strong> 30 minutes with Omar — ask anything.</div>
-    <a href="https://calendly.com/omaralvy/30min" class="cta-btn" target="_blank">Book a call ↗</a>
+    <div class="cta-strip-text"><strong>Questions before you finish reading?</strong> 30 minutes with Omar — no pitch, just a real conversation.</div>
+    <a href="https://calendly.com/omaralvy/30min" class="cta-btn" target="_blank">Book time with Omar ↗</a>
   </div>
 
   <div class="body">
@@ -723,7 +724,8 @@
     <div class="card-dark">
       <div class="icp-label">Who We Serve</div>
       <div class="icp-text">
-        <strong>The Family Connector</strong> — In every modern family, one person carries the weight of connection. They remember the anniversaries. They call grandma. They're quietly terrified that the stories, the documents, the voices will disappear before anyone thinks to capture them. They're 30–55, and they show up in every kind of family — first-generation, multicultural, blended, geographically scattered. <strong>In any couple, one of the two is already thinking about this.</strong> Kinnect is built for that person — and through them, for the whole family.
+        <strong>The Family Connector</strong> — In every modern family, one person carries the weight of connection. They remember the anniversaries. They call grandma. They're quietly terrified that the stories, the documents, the voices will disappear before anyone thinks to capture them. They show up in every kind of family — first-generation, multicultural, blended, geographically scattered. <strong>In any couple, one of the two is already thinking about this.</strong> Kinnect is built for that person — and through them, for the whole family.<br><br>
+        <span style="color:rgba(255,255,255,0.42);font-size:13px;">The trigger is almost always the same: a diagnosis, a death, or a quiet fear that no one else will say out loud.</span>
       </div>
     </div>
 
@@ -731,8 +733,8 @@
     <div class="section">
       <div class="section-title">Investment Thesis</div>
       <div class="thesis">
-        Every competitor solves the <strong>Head</strong> — wills, documents, estate tools. Nobody solves the <strong>Heart</strong> — stories, voices, the feeling of being remembered. Kinnect solves both. Underneath the consumer product sits <strong>Octopus</strong> — Kinnect's AI family intelligence layer — positioned to become the trusted connector across the family data ecosystem. Not another silo. The thing that reduces fragmentation for families.<br><br>
-        Nine months ago, Omar rebuilt the team around a sharper vision and a harder commitment. What exists today — the product, the AI infrastructure, the partnerships, the members — was built in that window. <strong>This round is not a bet on what Kinnect might become. It's a bet on what a small team already shipped, and what happens when it has fuel.</strong>
+        Every competitor solves the <strong>Head</strong> — wills, documents, estate tools. Nobody solves the <strong>Heart</strong> — stories, voices, the feeling of being remembered. Kinnect solves both. Underneath the consumer product sits <strong>Octopus</strong> — an AI layer that maps a family's relationships, detects document gaps, and routes them to the right partner at the right moment. Private by design. Revenue-generating from day one. And the longer it runs, the less any competitor can touch it.<br><br>
+        Nine months ago, Omar rebuilt the team around a sharper vision. Three platforms, six signed partnerships, a working AI infrastructure, 1,300 members — built with no paid ads and $480K. <strong>This round isn't a bet on potential. It's a bet on a team that already proved it, and is ready to stop holding back.</strong>
       </div>
     </div>
 
@@ -764,7 +766,7 @@
         </div>
         <div class="m-card green">
           <div class="m-val">6</div>
-          <div class="m-desc">Signed partnerships across 4 verticals</div>
+          <div class="m-desc">Signed partnerships across 3 verticals</div>
         </div>
         <div class="m-card">
           <div class="m-val">2,750</div>
@@ -784,7 +786,7 @@
           <div style="font-size:12.5px;color:var(--text-2);line-height:1.6;"><strong>K4Connect, FastWill, Gentreo</strong> — senior living, wills &amp; estate integrations. K4Connect alone: pipeline of 15,000+ communities, 1M+ residents.</div>
         </div>
         <div class="partner-row">
-          <div class="partner-tag">Emp. Benefits</div>
+          <div class="partner-tag">Benefits</div>
           <div style="font-size:12.5px;color:var(--text-2);line-height:1.6;"><strong>1 active broker relationship</strong> — targeting HR/wellness where caregiving is a recognized productivity issue. Licensing model.</div>
         </div>
         <div class="partner-row">
@@ -794,7 +796,7 @@
       </div>
 
       <div class="note" style="margin-top:10px;">
-        <strong>1 new member = 3 new families.</strong> Invite-only exclusivity drives word-of-mouth. On average, a living person can add 30+ people to a family tree — every signup is a network multiplier. This $1M gets Kinnect to 5,000–10,000 paying families and $500K–$1M ARR in 18 months.
+        <strong>1 new member = 3 new families.</strong> Invite-only exclusivity drives referral at every step. On average, a living person can add 30+ people to a family tree — every signup is a distribution event. 100% of growth to date is organic. Zero paid ads. Ever.
       </div>
     </div>
 
@@ -961,11 +963,11 @@
           <thead>
             <tr>
               <th>Company</th>
-              <th>Heart?</th>
-              <th>Head (docs)?</th>
-              <th>AI daily?</th>
-              <th>Private?</th>
-              <th>Cross-device?</th>
+              <th>Heart</th>
+              <th>Documents</th>
+              <th>AI Daily</th>
+              <th>Private</th>
+              <th>Cross-Platform</th>
             </tr>
           </thead>
           <tbody>
@@ -1051,8 +1053,8 @@
             </div>
           </div>
         </div>
-        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.1);font-size:13px;color:rgba(255,255,255,0.4);font-style:italic;line-height:1.7;">
-          "Every family has a story worth keeping. We're building the place they keep it." &nbsp;— <span style="color:rgba(255,255,255,0.55);">omar@kinnect.club</span>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.1);font-size:13px;color:rgba(255,255,255,0.38);line-height:1.8;">
+          This started because Omar's grandfather disappeared to dementia for ten years. Because his close friend Brandon died before anyone saved his voice. That's not a backstory. That's the company. &nbsp;— <span style="color:rgba(255,255,255,0.55);">omar@kinnect.club</span>
         </div>
       </div>
     </div>
@@ -1061,8 +1063,8 @@
 
   <!-- CTA BOTTOM -->
   <div class="cta-strip">
-    <div class="cta-strip-text"><strong>Ready to be part of this?</strong> Book 30 minutes with Omar — no deck, just a real conversation.</div>
-    <a href="https://calendly.com/omaralvy/30min" class="cta-btn" target="_blank">Book a call ↗</a>
+    <div class="cta-strip-text"><strong>If this landed — let's talk.</strong> Omar picks up. Calendly, 30 minutes.</div>
+    <a href="https://calendly.com/omaralvy/30min" class="cta-btn" target="_blank">Book time with Omar ↗</a>
   </div>
 
   <div class="footer">
