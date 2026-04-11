@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kinnect — Investment Memo</title>
-<!-- Open Graph / iMessage / Slack previews -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://investment.kinnect.club">
 <meta property="og:title" content="Kinnect — Pre-Seed Investment Memo">
@@ -13,231 +12,439 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kinnect — Pre-Seed Investment Memo">
 <meta name="twitter:description" content="The private home for families. Raising $1M pre-seed. 1,300+ members, 84 paying families, 4 B2B partnerships — built on $480K.">
-<meta name="description" content="Kinnect is raising a $1M pre-seed round. The private home for families — stories, documents, and daily connection. 1,300+ members, 84 paying families, 4 signed B2B partnerships.">
+<meta name="description" content="Kinnect is raising a $1M pre-seed round. 1,300+ members, 84 paying families, 4 signed B2B partnerships, built on $480K.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="canonical" href="https://investment.kinnect.club">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   :root {
-    --bg: #F5F0E8;
-    --surface: #FFFFFF;
-    --surface-2: #FAF7F3;
-    --border: #E6DFD3;
-    --border-2: #EDE8DF;
+    /* Pulled directly from the product */
+    --navy: #1C3772;
+    --red: #D14F35;
+    --gold: #A59238;
+    --gold-light: #CBC08C;
+    --green: #5E7034;
+    --green-light: #BDC4AC;
+    --warm-card: #E8E6DA;
+    --warm-card-2: #F0EEE8;
     --text: #1C1A16;
     --text-2: #5C5751;
     --text-3: #9C9790;
-    --accent: #5E7034;
-    --accent-light: #EFF3E6;
-    --dark: #1C1A16;
-    --shadow: 0 1px 3px rgba(28,26,22,0.06), 0 4px 16px rgba(28,26,22,0.05);
+    --surface: #FFFFFF;
+    --border: rgba(28,26,22,0.1);
+    --border-2: rgba(28,26,22,0.07);
     --shadow-sm: 0 1px 2px rgba(28,26,22,0.05), 0 2px 8px rgba(28,26,22,0.04);
+    --shadow: 0 2px 8px rgba(28,26,22,0.06), 0 8px 24px rgba(28,26,22,0.06);
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--surface);
     color: var(--text);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
-  .page {
-    max-width: 900px;
-    margin: 2.5rem auto;
-    background: var(--surface);
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(28,26,22,0.06), 0 12px 40px rgba(28,26,22,0.08);
+  body.gate-open { overflow: hidden; }
+
+  /* ── GATE — mirrors AuthBackground.svelte ─────────────────── */
+  #gate-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Navy base — exactly as in AuthBackground */
+    background: #1C3772;
   }
 
-  /* ─── HEADER ─── */
+  /* Red radials — mirrors AuthBackground radial layers */
+  #gate-overlay::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #D14F35 0%, rgba(209,79,53,0.6) 30%, transparent 60%);
+    pointer-events: none;
+  }
+
+  #gate-overlay::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at top right, #9B201B 0%, rgba(155,32,27,0.6) 40%, transparent 70%);
+    pointer-events: none;
+  }
+
+  #gate-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 360px;
+    padding: 1.25rem;
+    text-align: center;
+    margin: auto;
+  }
+
+  /* KINNECT wordmark — mirrors the auth screen style */
+  #gate-wordmark {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.85);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+
+  #gate-box {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 2rem 1.75rem 1.75rem;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  #gate-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+
+  #gate-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  #gate-form { display: flex; flex-direction: column; gap: 10px; }
+
+  #gate-form input {
+    font-family: inherit;
+    font-size: 16px; /* 16px prevents iOS zoom */
+    padding: 13px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    outline: none;
+    width: 100%;
+    -webkit-appearance: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  #gate-form input::placeholder { color: rgba(255,255,255,0.4); }
+  #gate-form input:focus { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.15); }
+
+  #gate-btn {
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px;
+    border-radius: 12px;
+    border: none;
+    background: #fff;
+    color: var(--navy);
+    cursor: pointer;
+    width: 100%;
+    -webkit-appearance: none;
+    transition: opacity 0.15s;
+    margin-top: 2px;
+  }
+
+  #gate-btn:hover { opacity: 0.92; }
+  #gate-btn:disabled { opacity: 0.5; cursor: default; }
+
+  #gate-fine {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── PAGE ──────────────────────────────────────────────────── */
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* ── HEADER — evokes the feed gradient ─────────────────────── */
   .header {
-    padding: 2.25rem 2.5rem 2rem;
-    border-bottom: 1px solid var(--border-2);
+    position: relative;
+    overflow: hidden;
+    padding: 2.5rem 2.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Feed gradient header — pulled from PageGradient.svelte feed variant */
+  .header-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: #A59238;
+  }
+
+  .header-bg::before {
+    content: '';
+    position: absolute;
+    width: 200%; height: 200px;
+    left: -50%; top: 10px;
+    background: radial-gradient(ellipse at center, #CBC08C 0%, rgba(203,192,140,0.5) 40%, rgba(203,192,140,0) 70%);
+  }
+
+  .header-bg::after {
+    content: '';
+    position: absolute;
+    width: 150%; height: 180px;
+    left: -30%; top: -60px;
+    background: radial-gradient(ellipse at center, rgba(209,79,53,0.4) 0%, rgba(209,79,53,0.2) 40%, transparent 70%);
+  }
+
+  .header-fade {
+    position: absolute;
+    inset-x: 0; bottom: 0;
+    height: 60%;
+    background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.6) 60%, #fff 100%);
+    z-index: 1;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 2rem;
-    background: var(--surface);
   }
 
-  .logo-mark {
-    width: 48px; height: 48px;
-    border-radius: 12px;
-    background: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; font-weight: 800;
-    color: #fff;
-    flex-shrink: 0;
-    letter-spacing: -0.5px;
+  .header-left { flex: 1; }
+
+  /* Wordmark in header */
+  .header-wordmark {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--text);
+    opacity: 0.5;
+    margin-bottom: 1rem;
   }
 
-  .company-name {
-    font-size: 24px; font-weight: 700;
+  .header-headline {
+    font-size: 26px;
+    font-weight: 700;
     color: var(--text);
     letter-spacing: -0.5px;
-    margin-bottom: 5px;
+    line-height: 1.25;
+    max-width: 440px;
   }
 
-  .tagline {
-    font-size: 14px; color: var(--text-2);
-    max-width: 480px;
+  .header-sub {
+    font-size: 14px;
+    color: var(--text-2);
+    margin-top: 8px;
+    max-width: 420px;
     line-height: 1.6;
   }
 
   .chips {
-    display: flex; flex-wrap: wrap; gap: 6px;
-    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
   }
 
   .chip {
-    font-size: 11px; font-weight: 500;
-    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
     border-radius: 20px;
-    border: 1px solid var(--border);
-    color: var(--text-3);
-    background: var(--surface-2);
+    border: 1px solid rgba(28,26,22,0.15);
+    color: var(--text-2);
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(4px);
   }
 
   .chip-accent {
-    background: var(--accent);
+    background: var(--text);
     color: #fff;
-    border-color: var(--accent);
+    border-color: var(--text);
   }
 
   .header-right {
-    text-align: right;
     flex-shrink: 0;
+    text-align: right;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    min-width: 140px;
+    gap: 12px;
+    min-width: 120px;
+    padding-top: 2px;
   }
 
-  .meta-label { font-size: 10px; color: var(--text-3); letter-spacing: 0.04em; text-transform: uppercase; }
-  .meta-val { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; margin-top: 1px; }
-  .meta-hero { font-size: 22px; font-weight: 800; color: var(--accent); letter-spacing: -0.5px; }
+  .meta-label {
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .meta-val {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+    margin-top: 1px;
+  }
+
+  .meta-hero {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -1px;
+  }
 
   .ext-link {
-    font-size: 12px; color: var(--text-2);
+    font-size: 12px;
+    color: var(--text-2);
     text-decoration: none;
     border-bottom: 1px solid var(--border);
     transition: border-color 0.15s;
   }
   .ext-link:hover { border-bottom-color: var(--text-2); }
 
-  /* ─── BODY ─── */
-  .body { padding: 0 2.5rem 2.5rem; }
+  /* ── BODY ──────────────────────────────────────────────────── */
+  .body {
+    padding: 0 2.5rem 3rem;
+    background: var(--surface);
+  }
 
   .section { margin-top: 2.25rem; }
 
   .section-title {
-    font-size: 10px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.12em;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: var(--text-3);
     margin-bottom: 14px;
     padding-bottom: 10px;
     border-bottom: 1px solid var(--border-2);
   }
 
-  /* ─── ICP ─── */
-  .icp-box {
-    background: var(--dark);
-    border-radius: 12px;
-    padding: 1.5rem 1.75rem;
-    color: #fff;
-    margin-top: 1.75rem;
-  }
-
-  .icp-label {
-    font-size: 10px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.12em;
-    color: #888884; margin-bottom: 10px;
-  }
-
-  .icp-text {
-    font-size: 14px; line-height: 1.8; color: #E0DDD5;
-  }
-
-  .icp-text strong { color: #fff; }
-
-  /* ─── THESIS ─── */
-  .thesis {
-    background: var(--surface-2);
-    border-radius: 12px;
-    padding: 1.5rem 1.75rem;
-    font-size: 14px; line-height: 1.9;
-    color: var(--text);
-    border-left: 3px solid var(--accent);
-    box-shadow: var(--shadow-sm);
-  }
-
-  /* ─── CARDS ─── */
+  /* ── CARDS — rounded-2xl + shadow-sm from product ──────────── */
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 1.25rem 1.5rem;
     box-shadow: var(--shadow-sm);
   }
 
   .card p { font-size: 13.5px; color: var(--text-2); line-height: 1.8; }
 
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-
-  /* ─── METRICS ─── */
-  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  .metric-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-
-  .m-card {
-    background: var(--surface-2);
-    border-radius: 12px;
-    padding: 1.25rem 1.4rem;
-    border: 1px solid var(--border-2);
+  /* warm card — bg-[#E8E6DA] from NudgeCard */
+  .card-warm {
+    background: var(--warm-card);
+    border: none;
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-sm);
   }
 
-  .m-card.accent { background: var(--accent); border-color: var(--accent); }
-  .m-card.dark { background: var(--dark); border-color: var(--dark); }
+  /* dark card */
+  .card-dark {
+    background: var(--text);
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    color: #fff;
+  }
+
+  .card-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-3);
+    margin-bottom: 8px;
+  }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+  /* ── ICP ────────────────────────────────────────────────────── */
+  .icp-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 10px;
+  }
+
+  .icp-text { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.8); }
+  .icp-text strong { color: #fff; }
+
+  /* ── THESIS ─────────────────────────────────────────────────── */
+  .thesis {
+    background: var(--warm-card-2);
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--text);
+    border-left: 3px solid var(--green);
+  }
+
+  /* ── METRICS ────────────────────────────────────────────────── */
+  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .metric-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+  .m-card {
+    background: var(--warm-card);
+    border-radius: 16px;
+    padding: 1.1rem 1.25rem;
+  }
+
+  .m-card.accent { background: var(--text); }
+  .m-card.green { background: var(--green); }
 
   .m-val {
-    font-size: 44px; font-weight: 800;
+    font-size: 40px;
+    font-weight: 700;
     color: var(--text);
     letter-spacing: -2px;
     line-height: 1;
   }
 
   .m-card.accent .m-val,
-  .m-card.dark .m-val { color: #fff; }
+  .m-card.green .m-val { color: #fff; }
 
-  .m-desc {
-    font-size: 12px; color: var(--text-3);
-    margin-top: 6px; line-height: 1.5;
-  }
+  .m-desc { font-size: 11.5px; color: var(--text-3); margin-top: 5px; line-height: 1.5; }
+  .m-card.accent .m-desc { color: rgba(255,255,255,0.6); }
+  .m-card.green .m-desc { color: rgba(255,255,255,0.7); }
 
-  .m-card.accent .m-desc { color: rgba(255,255,255,0.7); }
-  .m-card.dark .m-desc { color: rgba(255,255,255,0.55); }
-
-  /* ─── TEAM ─── */
+  /* ── TEAM ───────────────────────────────────────────────────── */
   .team-intro {
-    background: var(--surface-2);
-    border-radius: 12px;
+    background: var(--warm-card);
+    border-radius: 16px;
     padding: 1rem 1.4rem;
-    margin-bottom: 14px;
-    font-size: 13.5px; font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 13.5px;
+    font-weight: 500;
     color: var(--text);
     line-height: 1.6;
-    border: 1px solid var(--border-2);
   }
 
   .team-row {
-    display: flex; align-items: flex-start; gap: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
     padding: 14px 0;
     border-bottom: 1px solid var(--border-2);
   }
@@ -245,395 +452,273 @@
   .team-row:last-of-type { border-bottom: none; padding-bottom: 4px; }
 
   .avatar {
-    width: 40px; height: 40px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: var(--accent-light);
-    color: var(--accent);
-    font-size: 12px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
+    background: var(--warm-card);
+    color: var(--text-2);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-    border: 1px solid rgba(94,112,52,0.2);
+    border: 1px solid var(--border);
   }
 
   .team-name { font-size: 13.5px; font-weight: 600; color: var(--text); }
   .team-role { font-size: 12px; color: var(--text-3); margin-top: 2px; }
   .team-bio { font-size: 12.5px; color: var(--text-2); margin-top: 5px; line-height: 1.65; }
 
-  /* ─── PLATFORM ─── */
-  .platform-banner {
-    background: var(--dark);
-    border-radius: 12px;
-    padding: 1.5rem 1.75rem;
-    color: #fff;
-    margin-bottom: 14px;
-  }
-
-  .platform-banner-title {
-    font-size: 17px; font-weight: 700;
-    color: #fff; margin-bottom: 8px;
-    letter-spacing: -0.3px;
-  }
-
-  .platform-banner-body {
-    font-size: 13px; color: #A8A49D; line-height: 1.75;
-  }
-
-  /* ─── COMPETITION TABLE ─── */
+  /* ── COMPETITION TABLE ──────────────────────────────────────── */
   .comp-table { width: 100%; font-size: 12px; border-collapse: collapse; }
 
   .comp-table th {
-    text-align: left; font-size: 10px; font-weight: 700;
-    color: var(--text-3); text-transform: uppercase; letter-spacing: 0.07em;
-    padding: 7px 10px; border-bottom: 1px solid var(--border-2);
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--border-2);
   }
 
   .comp-table td {
-    padding: 9px 10px; border-bottom: 1px solid var(--border-2);
-    color: var(--text-2); vertical-align: middle;
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--border-2);
+    color: var(--text-2);
+    vertical-align: middle;
   }
 
   .comp-table tr:last-child td { border-bottom: none; }
-  .comp-table .ours td { background: var(--accent-light); color: var(--text); font-weight: 600; }
+  .comp-table .ours td { background: var(--warm-card); color: var(--text); font-weight: 600; }
 
-  /* ─── BADGES ─── */
+  /* ── BADGES ─────────────────────────────────────────────────── */
   .badge {
-    display: inline-block; font-size: 10.5px;
-    padding: 2px 8px; border-radius: 20px; font-weight: 500;
+    display: inline-block;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 500;
   }
 
-  .b-dark { background: var(--dark); color: #fff; }
-  .b-accent { background: var(--accent); color: #fff; }
-  .b-mid { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+  .b-dark { background: var(--text); color: #fff; }
+  .b-green { background: var(--green); color: #fff; }
+  .b-warm { background: var(--warm-card); color: var(--text); border: 1px solid var(--border); }
   .b-outline { background: transparent; color: var(--text-3); border: 1px solid var(--border); }
 
-  /* ─── RISKS / VC ROWS ─── */
+  /* ── RISKS / DOTS ───────────────────────────────────────────── */
   .risk-row {
-    display: flex; gap: 14px;
-    padding: 12px 0; border-bottom: 1px solid var(--border-2);
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-2);
     align-items: flex-start;
   }
 
   .risk-row:last-child { border-bottom: none; }
 
   .risk-dot {
-    width: 6px; height: 6px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background: var(--accent);
-    margin-top: 7px; flex-shrink: 0;
+    background: var(--green);
+    margin-top: 7px;
+    flex-shrink: 0;
   }
 
   .risk-title { font-size: 13.5px; font-weight: 600; color: var(--text); }
   .risk-body { font-size: 12.5px; color: var(--text-2); margin-top: 3px; line-height: 1.65; }
 
-  /* ─── CAP TABLE ─── */
-  .cap-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 10px 0; border-bottom: 1px solid var(--border-2);
-  }
-
-  .cap-row:last-of-type { border-bottom: none; }
-  .cap-name { font-size: 13.5px; font-weight: 500; color: var(--text); }
-  .cap-detail { font-size: 12px; color: var(--text-3); margin-top: 1px; }
-
-  .bar-bg {
-    width: 60px; height: 3px;
-    background: var(--border-2);
-    border-radius: 3px; overflow: hidden;
-    display: inline-block; margin-right: 8px; vertical-align: middle;
-  }
-
-  .bar-fill { height: 3px; background: var(--accent); border-radius: 3px; }
-
-  /* ─── ASK BOX ─── */
-  .ask-box {
-    background: var(--dark);
-    border-radius: 16px;
-    padding: 2rem 2rem 1.75rem;
-    color: #fff;
-  }
-
+  /* ── ASK ────────────────────────────────────────────────────── */
   .ask-hero {
-    font-size: 52px; font-weight: 800;
-    color: #fff; letter-spacing: -2px;
-    line-height: 1; margin-bottom: 6px;
+    font-size: 52px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 6px;
   }
 
-  .ask-sub { font-size: 13.5px; color: #888884; margin-bottom: 22px; line-height: 1.6; }
+  .ask-sub { font-size: 13.5px; color: rgba(255,255,255,0.5); margin-bottom: 22px; line-height: 1.6; }
 
   .ask-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
   .ask-col-title {
-    font-size: 10px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.1em;
-    color: #666660; margin-bottom: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 10px;
   }
 
-  .ask-list { font-size: 13px; color: #C8C4BC; line-height: 2.1; }
+  .ask-list { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 2.1; }
   .ask-list strong { color: #fff; }
 
-  /* ─── FLYWHEEL ─── */
+  /* ── FLYWHEEL ───────────────────────────────────────────────── */
   .flywheel-row {
-    display: flex; gap: 12px;
-    padding: 9px 0; border-bottom: 1px solid var(--border-2);
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border-2);
     align-items: flex-start;
   }
 
   .flywheel-row:last-child { border-bottom: none; }
 
   .flywheel-num {
-    width: 24px; height: 24px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
-    background: var(--accent);
-    color: #fff; font-size: 11px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; margin-top: 1px;
+    background: var(--green);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
   }
 
-  /* ─── UNIT ECONOMICS ─── */
+  /* ── UNIT ECONOMICS ─────────────────────────────────────────── */
   .ue-row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding: 9px 0; border-bottom: 1px solid var(--border-2);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border-2);
   }
 
   .ue-row:last-child { border-bottom: none; }
   .ue-label { font-size: 13px; color: var(--text-2); }
   .ue-val { font-size: 14px; font-weight: 700; color: var(--text); }
 
-  /* ─── PARTNER ─── */
+  /* ── PARTNERS ───────────────────────────────────────────────── */
   .partner-row {
-    display: flex; gap: 12px;
-    padding: 10px 0; border-bottom: 1px solid var(--border-2);
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-2);
     align-items: flex-start;
   }
 
   .partner-row:last-child { border-bottom: none; }
 
   .partner-tag {
-    font-size: 10px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.05em;
-    background: var(--accent-light);
-    color: var(--accent);
-    border-radius: 6px; padding: 3px 8px;
-    flex-shrink: 0; margin-top: 2px; white-space: nowrap;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--warm-card);
+    color: var(--text-2);
+    border-radius: 8px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    white-space: nowrap;
   }
 
-  /* ─── AI ARCHITECTURE ─── */
+  /* ── AI ARCHITECTURE ────────────────────────────────────────── */
   .ai-loop-row {
-    display: flex; gap: 14px;
-    padding: 14px 0; border-bottom: 1px solid var(--border-2);
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-2);
     align-items: flex-start;
   }
 
   .ai-loop-row:last-child { border-bottom: none; }
 
   .ai-loop-num {
-    font-size: 11px; font-weight: 700;
-    color: #fff; background: var(--accent);
-    border-radius: 6px; padding: 2px 8px;
-    flex-shrink: 0; margin-top: 2px; letter-spacing: 0.03em;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--green);
+    border-radius: 6px;
+    padding: 2px 8px;
+    flex-shrink: 0;
+    margin-top: 2px;
   }
 
   .ai-loop-title { font-size: 13.5px; font-weight: 600; color: var(--text); }
   .ai-loop-body { font-size: 12.5px; color: var(--text-2); margin-top: 4px; line-height: 1.65; }
 
-  /* ─── QUOTE ─── */
+  /* ── PULL QUOTE ─────────────────────────────────────────────── */
   .pull-quote {
-    border-left: 3px solid var(--accent);
-    padding: 12px 18px;
-    margin: 12px 0;
+    border-left: 3px solid var(--green-light);
+    padding: 10px 16px;
+    margin: 12px 0 0;
     font-size: 13px;
     color: var(--text-2);
     font-style: italic;
     line-height: 1.7;
-    background: var(--surface-2);
-    border-radius: 0 8px 8px 0;
+    background: var(--warm-card-2);
+    border-radius: 0 10px 10px 0;
   }
 
-  /* ─── NOTE BOX ─── */
+  /* ── NOTE ───────────────────────────────────────────────────── */
   .note {
-    background: var(--surface-2);
-    border-radius: 10px;
+    background: var(--warm-card-2);
+    border-radius: 12px;
     padding: 12px 1.4rem;
     font-size: 13px;
     color: var(--text-2);
     line-height: 1.75;
-    border: 1px solid var(--border-2);
-    margin-top: 12px;
+    margin-top: 10px;
   }
 
-  /* ─── FOOTER ─── */
+  /* ── FOOTER ─────────────────────────────────────────────────── */
   .footer {
     padding: 1.25rem 2.5rem;
-    border-top: 1px solid var(--border-2);
-    display: flex; justify-content: space-between;
-    font-size: 11.5px; color: var(--text-3);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+    color: var(--text-3);
+    flex-wrap: wrap;
+    gap: 8px;
+    background: var(--surface);
   }
 
   strong { font-weight: 600; }
 
-  /* ─── EMAIL GATE ─── */
-  #gate-overlay {
-    position: fixed; inset: 0;
-    background: rgba(28,26,22,0.72);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    z-index: 9999;
-    display: flex; align-items: center; justify-content: center;
-    padding: 1.5rem;
-  }
-
-  #gate-box {
-    background: var(--surface);
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    padding: 2.5rem 2.5rem 2rem;
-    max-width: 420px; width: 100%;
-    box-shadow: 0 8px 40px rgba(28,26,22,0.2);
-    text-align: center;
-  }
-
-  #gate-logo {
-    width: 52px; height: 52px;
-    border-radius: 14px;
-    background: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px; font-weight: 800; color: #fff;
-    margin: 0 auto 1.25rem;
-  }
-
-  #gate-title {
-    font-size: 22px; font-weight: 700;
-    color: var(--text); letter-spacing: -0.5px;
-    margin-bottom: 8px;
-  }
-
-  #gate-sub {
-    font-size: 13.5px; color: var(--text-2);
-    line-height: 1.65; margin-bottom: 1.75rem;
-  }
-
-  #gate-form { display: flex; flex-direction: column; gap: 10px; }
-
-  #gate-form input {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    padding: 11px 16px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    background: var(--surface-2);
-    color: var(--text);
-    outline: none;
-    width: 100%;
-    transition: border-color 0.15s;
-  }
-
-  #gate-form input:focus { border-color: var(--accent); background: #fff; }
-
-  #gate-btn {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px; font-weight: 600;
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-    background: var(--accent);
-    color: #fff;
-    cursor: pointer;
-    width: 100%;
-    transition: opacity 0.15s;
-    margin-top: 2px;
-  }
-
-  #gate-btn:hover { opacity: 0.88; }
-  #gate-btn:disabled { opacity: 0.5; cursor: default; }
-
-  #gate-fine {
-    font-size: 11.5px; color: var(--text-3);
-    margin-top: 14px; line-height: 1.6;
-  }
-
-  /* ─── EMAIL CAPTURE ─── */
-  .email-capture {
-    background: var(--accent-light);
-    border: 1px solid rgba(94,112,52,0.2);
-    border-radius: 12px;
-    padding: 1.25rem 1.5rem;
-    margin-top: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .email-capture-text {
-    font-size: 13.5px; font-weight: 600;
-    color: var(--text); flex: 1;
-    min-width: 200px;
-  }
-
-  .email-capture-sub {
-    font-size: 12px; color: var(--text-3);
-    font-weight: 400; margin-top: 2px;
-  }
-
-  .email-form {
-    display: flex; gap: 8px; flex-wrap: wrap;
-  }
-
-  .email-form input {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    padding: 8px 14px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: #fff;
-    color: var(--text);
-    outline: none;
-    width: 220px;
-  }
-
-  .email-form input:focus { border-color: var(--accent); }
-
-  .email-form button {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px; font-weight: 600;
-    padding: 8px 18px;
-    border-radius: 8px;
-    border: none;
-    background: var(--accent);
-    color: #fff;
-    cursor: pointer;
-    transition: opacity 0.15s;
-    white-space: nowrap;
-  }
-
-  .email-form button:hover { opacity: 0.88; }
-
-  @media (max-width: 640px) {
-    .header { flex-direction: column; }
-    .header-right { text-align: left; }
+  /* ── RESPONSIVE ─────────────────────────────────────────────── */
+  @media (max-width: 680px) {
+    .header { padding: 1.75rem 1.25rem 1.5rem; }
+    .header-content { flex-direction: column; gap: 1.25rem; }
+    .header-right { text-align: left; flex-direction: row; flex-wrap: wrap; gap: 16px; min-width: unset; }
+    .header-headline { font-size: 22px; }
+    .body { padding: 0 1.25rem 2rem; }
     .two-col, .three-col, .ask-grid { grid-template-columns: 1fr; }
     .metric-grid-4, .metric-grid-3 { grid-template-columns: 1fr 1fr; }
-    .page { margin: 0; border-radius: 0; }
-    .body, .header { padding-left: 1.25rem; padding-right: 1.25rem; }
     .m-val { font-size: 34px; }
     .ask-hero { font-size: 38px; }
-    .email-capture { flex-direction: column; }
+    .section { margin-top: 1.75rem; }
+    .footer { padding: 1.25rem; }
+    .card-dark { padding: 1.25rem; }
+    #gate-box { padding: 1.75rem 1.25rem 1.5rem; }
   }
 </style>
 </head>
-<body>
-<!-- EMAIL GATE -->
+<body class="gate-open">
+
+<!-- GATE — mirrors Kinnect AuthBackground.svelte -->
 <div id="gate-overlay">
-  <div id="gate-box">
-    <div id="gate-logo">K</div>
-    <div id="gate-title">Kinnect Investment Memo</div>
-    <div id="gate-sub">Enter your name and email to access the pre-seed round materials.</div>
-    <div id="gate-form">
-      <input type="text" id="gate-name" placeholder="Your name" autocomplete="name" required>
-      <input type="email" id="gate-email" placeholder="Your email" autocomplete="email" required>
-      <button id="gate-btn" type="button" onclick="gateSubmit()">View Memo →</button>
+  <div id="gate-inner">
+    <div id="gate-wordmark">KINNECT</div>
+    <div id="gate-box">
+      <div id="gate-title">Investment Memo</div>
+      <div id="gate-sub">Enter your name and email to access the pre-seed round materials.</div>
+      <div id="gate-form">
+        <input type="text" id="gate-name" placeholder="Your name" autocomplete="name" required>
+        <input type="email" id="gate-email" placeholder="Email address" autocomplete="email" required inputmode="email">
+        <button id="gate-btn" type="button" onclick="gateSubmit()">View Memo</button>
+      </div>
+      <div id="gate-fine">By entering, you confirm you're an accredited investor or family/friend of the founding team. This memo is confidential.</div>
     </div>
-    <div id="gate-fine">By entering, you confirm you're an accredited investor or family/friend of the founding team. This memo is confidential.</div>
   </div>
 </div>
 
@@ -641,30 +726,31 @@
 
   <!-- HEADER -->
   <div class="header">
-    <div style="display:flex;gap:16px;align-items:flex-start;flex:1;">
-      <div class="logo-mark">K</div>
-      <div>
-        <div class="company-name">Kinnect</div>
-        <div class="tagline">The private home for families — stories, documents, and daily connection. So no one gets forgotten.</div>
+    <div class="header-bg"></div>
+    <div class="header-fade"></div>
+    <div class="header-content">
+      <div class="header-left">
+        <div class="header-wordmark">Kinnect</div>
+        <div class="header-headline">The private home for families.</div>
+        <div class="header-sub">Stories, documents, and daily connection — so no one gets forgotten.</div>
         <div class="chips">
           <span class="chip">Chicago, IL · Delaware C-Corp</span>
-          <span class="chip chip-accent">Pre-Seed Round</span>
-          <span class="chip">Family Platform · Consumer</span>
+          <span class="chip chip-accent">Pre-Seed · $1M</span>
           <span class="chip">iOS · Android · Web</span>
         </div>
       </div>
-    </div>
-    <div class="header-right">
-      <div>
-        <div class="meta-label">Raising</div>
-        <div class="meta-hero">$1M</div>
-      </div>
-      <div>
-        <div class="meta-label">Raised to Date</div>
-        <div class="meta-val">$480K</div>
-      </div>
-      <div style="margin-top:4px;">
-        <a href="https://www.kinnect.club" class="ext-link" target="_blank">kinnect.club ↗</a>
+      <div class="header-right">
+        <div>
+          <div class="meta-label">Raising</div>
+          <div class="meta-hero">$1M</div>
+        </div>
+        <div>
+          <div class="meta-label">Raised to Date</div>
+          <div class="meta-val">$480K</div>
+        </div>
+        <div style="margin-top:4px;">
+          <a href="https://www.kinnect.club" class="ext-link" target="_blank">kinnect.club ↗</a>
+        </div>
       </div>
     </div>
   </div>
@@ -672,11 +758,11 @@
   <div class="body">
 
     <!-- WHO WE SERVE -->
-    <div class="icp-box">
+    <div class="card-dark" style="margin-top:2.25rem;">
       <div class="icp-label">Who We Serve</div>
       <div class="icp-text">
         <strong>The Family Connector</strong> — In every modern family, one person carries the weight of connection. They remember the anniversaries. They call grandma. They're quietly terrified that the stories, the documents, the voices will disappear before anyone thinks to capture them. They're 30–55, and they show up in every kind of family — first-generation, multicultural, blended, geographically scattered. <strong>In any couple, one of the two is already thinking about this.</strong> Kinnect is built for that person — and through them, for the whole family.
-        <div style="color:#75706A;font-size:12.5px;margin-top:10px;">Secondary: Anyone who has just experienced a loss or near-loss — a diagnosis, a death, a friend gone too soon — and feels the urgent need to capture what's left before more disappears.</div>
+        <div style="color:rgba(255,255,255,0.45);font-size:12.5px;margin-top:10px;">Secondary: Anyone who has just experienced a loss or near-loss — a diagnosis, a death, a friend gone too soon — and feels the urgent need to capture what's left before more disappears.</div>
       </div>
     </div>
 
@@ -685,14 +771,14 @@
       <div class="section-title">Investment Thesis</div>
       <div class="thesis">
         Every competitor solves the <strong>Head</strong> — wills, documents, estate tools. Nobody solves the <strong>Heart</strong> — stories, voices, the feeling of being remembered. Kinnect solves both. The bigger opportunity is what sits underneath: <strong>Octopus</strong>, Kinnect's AI family intelligence layer, is positioned to become the trusted connector across the family data ecosystem — not another silo adding to the fragmentation families already face.<br><br>
-        As Kinnect accumulates voice data, relationship graphs, and document history (with explicit consent), it becomes the intermediary that understands a family's full picture and surfaces what they need across products, partners, and life stages — like an operating system for family legacy, private, permissioned, and compounding daily. With <strong>1,300+ members, 84 paying families, 490 Storybooks, 4 signed B2B partnerships</strong> — all built with $480K in under two years — this is no longer a thesis. It's an early business with a moat that compounds every day.
+        As Kinnect accumulates voice data, relationship graphs, and document history (with explicit consent), it becomes the intermediary that understands a family's full picture — like an operating system for family legacy, private, permissioned, and compounding daily. With <strong>1,300+ members, 84 paying families, 490 Storybooks, 4 signed B2B partnerships</strong> — all built with $480K in under two years — this is no longer a thesis. It's an early business with a moat that compounds every day.
       </div>
     </div>
 
     <!-- TRACTION -->
     <div class="section">
       <div class="section-title">Traction</div>
-      <div class="metric-grid-4" style="margin-bottom:12px;">
+      <div class="metric-grid-4" style="margin-bottom:10px;">
         <div class="m-card accent">
           <div class="m-val">84</div>
           <div class="m-desc">Stripe-verified paying families</div>
@@ -723,7 +809,7 @@
           <div class="m-val">2,750</div>
           <div class="m-desc">Email subscribers — warm pipeline</div>
         </div>
-        <div class="m-card dark">
+        <div class="m-card green">
           <div class="m-val">240</div>
           <div class="m-desc">SEO posts/month via AI Growth Agent</div>
         </div>
@@ -780,22 +866,22 @@
     <!-- PLATFORMS -->
     <div class="section">
       <div class="section-title">Platforms</div>
-      <div class="platform-banner">
-        <div class="platform-banner-title">Every family. Every device. No exceptions.</div>
-        <div class="platform-banner-body">Live on iOS, Android, and web — three platforms, two native apps, shipped in 9 months. Most of the world's families aren't on iOS. They're on Android. On web. Kinnect was designed from day one to meet them there.</div>
+      <div class="card-dark" style="margin-bottom:12px;">
+        <div style="font-size:17px;font-weight:600;color:#fff;margin-bottom:8px;letter-spacing:-0.3px;">Every family. Every device. No exceptions.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.75;">Live on iOS, Android, and web — three platforms, two native apps, shipped in 9 months. Most of the world's families aren't on iOS. They're on Android. On web. Kinnect was designed from day one to meet them there.</div>
       </div>
       <div class="three-col">
-        <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:8px;">iOS</div>
-          <p>In App Store review. V2 rebuilt with Octopus AI at the core. 1,300+ historical installs and 84 paying families from V1 alone.</p>
+        <div class="card-warm">
+          <div class="card-label">iOS</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.75;">In App Store review. V2 rebuilt with Octopus AI at the core. 1,300+ historical installs and 84 paying families from V1 alone.</p>
         </div>
-        <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:8px;">Android</div>
-          <p>Live. Purpose-built native product. Opens Kinnect to the global majority — families most underserved by the memory preservation market.</p>
+        <div class="card-warm">
+          <div class="card-label">Android</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.75;">Live. Purpose-built native product. Opens Kinnect to the global majority — families most underserved by the memory preservation market.</p>
         </div>
-        <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:8px;">Web</div>
-          <p>Live. Accessibility-first for older family members. Family Tree management, Vault access, and document handling built for desktop.</p>
+        <div class="card-warm">
+          <div class="card-label">Web</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.75;">Live. Accessibility-first for older family members. Family Tree, Vault, and document handling built for desktop.</p>
         </div>
       </div>
     </div>
@@ -804,17 +890,17 @@
     <div class="section">
       <div class="section-title">Why Now</div>
       <div class="three-col">
-        <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:8px;">Privacy Exodus</div>
-          <p>77% of Americans don't trust social platforms with personal data. Regulatory pressure is accelerating. Families are leaving public feeds for private spaces.</p>
+        <div class="card-warm">
+          <div class="card-label">Privacy Exodus</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.75;">77% of Americans don't trust social platforms with personal data. Regulatory pressure is accelerating. Families are leaving public feeds for private spaces.</p>
         </div>
-        <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:8px;">Trust Vacuum</div>
-          <p>Less than 1 in 10 trust social apps with family memories. 63% say accessing a deceased loved one's accounts was harder than expected. Families need infrastructure.</p>
+        <div class="card-warm">
+          <div class="card-label">Trust Vacuum</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.75;">Less than 1 in 10 trust social apps with family memories. 63% say accessing a deceased loved one's accounts was harder than expected. Families need infrastructure.</p>
         </div>
-        <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:8px;">AI Changes Everything</div>
-          <p>For the first time, AI can personalize a family's experience daily — surfacing what's missing at the right moment. No incumbent can replicate accumulated family intelligence.</p>
+        <div class="card-warm">
+          <div class="card-label">AI Changes Everything</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.75;">For the first time, AI can personalize a family's experience daily — surfacing what's missing at the right moment. No incumbent can replicate accumulated family intelligence.</p>
         </div>
       </div>
       <div class="note">
@@ -826,29 +912,14 @@
     <div class="section">
       <div class="section-title">The Kinnect Platform</div>
       <div class="card" style="margin-bottom:12px;">
-        <p><strong>No ads. No addictive algorithms. No data sales.</strong> A private, invite-only platform where families connect, record stories, and save generational documents — across iOS, Android, and web. Not an app. A platform and a brand — built with partners who share the belief that technology should bring families closer, not fragment them further.</p>
+        <p><strong>No ads. No addictive algorithms. No data sales.</strong> A private, invite-only platform where families connect, record stories, and save generational documents — across iOS, Android, and web.</p>
         <ul style="margin-top:14px;padding-left:1.1rem;font-size:13.5px;color:var(--text-2);line-height:2.15;">
           <li><strong>Family Tree</strong> — Most inclusive tree on the market. 30 nodes per member. Every node is a potential subscriber and partner referral. AI surfaces what's missing: <em>"Your daughter doesn't have health insurance on file."</em></li>
           <li><strong>Vault</strong> — Secure family document storage. If a document is missing, Kinnect connects the family to a trusted partner (FastWill, Gentreo). Revenue for Kinnect. Value for the family.</li>
-          <li><strong>Octopus (AI Layer)</strong> — Family intelligence engine. Learns relationships, patterns, and gaps. As voice data and family graphs accumulate, Octopus becomes the trusted connector — reducing fragmentation rather than adding to it.</li>
+          <li><strong>Octopus (AI Layer)</strong> — Family intelligence engine. Learns relationships, patterns, and gaps. As voice data and family graphs accumulate, Octopus becomes the trusted connector across products, partners, and life stages.</li>
           <li><strong>Daily Echo + Nudge</strong> — AI-personalized daily prompts and monthly relationship investment. 490 Storybooks, 279 voice recordings, 80% onboarding completion.</li>
-          <li><strong>Printed StoryBook Export</strong> — High-margin physical artifact with QR codes linking to multimedia. The most durable Kinnect product: a book that exists in the world.</li>
+          <li><strong>Printed StoryBook Export</strong> — High-margin physical artifact with QR codes linking to multimedia. A book that exists in the world.</li>
         </ul>
-      </div>
-    </div>
-
-    <!-- PLATFORM VISION -->
-    <div class="section">
-      <div class="section-title">The Platform Vision — Octopus &amp; Family Intelligence</div>
-      <div class="two-col">
-        <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:10px;">The Data Moat</div>
-          <p>Every voice recording, document, family tree relationship, and daily Echo response teaches Octopus something no other platform can learn: the full picture of a real family. <strong>Intentional, emotional, generational</strong> data — the kind families actively choose to create and protect. Unlike behavioral surface-level social data, this compounds into irreplaceable intelligence.</p>
-        </div>
-        <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:10px;">The Connector Strategy</div>
-          <p><strong>Phase 1 (now):</strong> Kinnect grows by being integrated into partners at the moment families need them — senior living move-in, will creation, a new child. No paid media. Partners are distribution AND data signals.<br><br><strong>Phase 2:</strong> Octopus surfaces patterns across thousands of families — which documents are missing, which moments drive engagement, which verticals to build and own directly. The partner ecosystem is the R&amp;D engine for Kinnect's next products.</p>
-        </div>
       </div>
     </div>
 
@@ -857,12 +928,12 @@
       <div class="section-title">The Kinnect Flywheel</div>
       <div class="two-col">
         <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:10px;">Exclusivity × Inclusivity</div>
+          <div class="card-label">Exclusivity × Inclusivity</div>
           <p>Invite-only creates exclusivity — early members bring the people who matter most, not strangers. The Family Tree creates inclusivity — every person added is a potential member, subscriber, referral. One signup opens an entire family network.</p>
           <div class="pull-quote">"You can take your photos to another platform. You can't take grandma's voice. The switching cost isn't inconvenient — it's heartbreaking." — Kinnect member</div>
         </div>
         <div class="card">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:10px;">Content Moat — By Month</div>
+          <div class="card-label">Content Moat — By Month</div>
           <div class="flywheel-row">
             <div class="flywheel-num">1</div>
             <div style="font-size:12.5px;color:var(--text-2);">First Echo recorded. First document in the Vault. Already: 490 Storybooks and 279 voice recordings from V1 iOS base.</div>
@@ -891,14 +962,14 @@
           <div class="card">
             <p><strong>Direct (B2C):</strong> Omar's brand background drives high-quality organic content. Zero paid acquisition. Initial wedge: bereaved individuals, caregivers, families navigating illness — high-urgency, high word-of-mouth. 1,300+ members organically.</p>
             <p style="margin-top:10px;"><strong>B2B2C Distribution:</strong> Partners send families at their highest-urgency moments. Our platform keeps them.</p>
-            <div class="card" style="margin-top:12px;border:1px solid var(--border-2);box-shadow:none;">
+            <div style="margin-top:12px;background:var(--warm-card-2);border-radius:12px;padding:0.75rem 1.25rem;">
               <div class="partner-row">
                 <div class="partner-tag">Senior Living</div>
                 <div style="font-size:12.5px;color:var(--text-2);line-height:1.6;"><strong>K4Connect</strong> — integration started. Pipeline: 15,000+ communities, 1M+ residents.</div>
               </div>
               <div class="partner-row">
                 <div class="partner-tag">Wills &amp; Estate</div>
-                <div style="font-size:12.5px;color:var(--text-2);line-height:1.6;"><strong>FastWill + Gentreo</strong> — two will platform integrations. Vault sync. Referral revenue model.</div>
+                <div style="font-size:12.5px;color:var(--text-2);line-height:1.6;"><strong>FastWill + Gentreo</strong> — two will platform integrations. Vault sync. Referral revenue.</div>
               </div>
               <div class="partner-row">
                 <div class="partner-tag">Brand / Hardware</div>
@@ -914,7 +985,7 @@
         <div>
           <div class="section-title">Business Model</div>
           <div class="card">
-            <p><strong>kinnect.club — Membership starting at $0.</strong> Every family belongs in Kinnect. Pricing scales with use and family size — no paywalls.</p>
+            <p><strong>Membership starting at $0.</strong> Every family belongs in Kinnect. Pricing scales with use and family size — no paywalls.</p>
             <div class="note" style="margin-top:12px;">
               <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:10px;">Launching Summer 2026</div>
               <div style="font-size:14px;color:var(--text);line-height:2.2;">
@@ -941,7 +1012,7 @@
           <div class="ue-row"><span class="ue-label">CAC (blended)</span><span class="ue-val">$25–$40</span></div>
           <div class="ue-row"><span class="ue-label">Payback period</span><span class="ue-val">2–4 months</span></div>
           <div class="ue-row"><span class="ue-label">LTV at 3% churn</span><span class="ue-val">~$400</span></div>
-          <div class="ue-row"><span class="ue-label">LTV : CAC</span><span class="ue-val" style="color:var(--accent);">10–16×</span></div>
+          <div class="ue-row"><span class="ue-label">LTV : CAC</span><span class="ue-val" style="color:var(--green);">10–16×</span></div>
         </div>
         <div class="card">
           <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:12px;">18-Month Milestones (this $1M)</div>
@@ -964,8 +1035,8 @@
     <!-- AI ARCHITECTURE -->
     <div class="section">
       <div class="section-title">Kinnect is an AI-Architected Company</div>
-      <div style="background:var(--dark);border-radius:12px;padding:1.5rem 1.75rem;margin-bottom:14px;">
-        <div style="font-size:14px;color:#E0DDD5;line-height:1.85;">Most companies talk about AI. Kinnect runs on it — across product, growth, and infrastructure. AI is embedded in every layer, letting a small team ship at the output of one three times its size. This is how we built 3 platforms, 4 partnerships, and 240 pieces of published content per month on $480K.</div>
+      <div class="card-dark" style="margin-bottom:12px;">
+        <div style="font-size:14px;color:rgba(255,255,255,0.75);line-height:1.85;">Most companies talk about AI. Kinnect runs on it — across product, growth, and infrastructure. AI is embedded in every layer, letting a small team ship at the output of one three times its size. This is how we built 3 platforms, 4 partnerships, and 240 pieces of published content per month on $480K.</div>
       </div>
       <div class="card" style="padding:0.75rem 1.5rem;">
         <div class="ai-loop-row">
@@ -979,45 +1050,22 @@
           <div class="ai-loop-num">02</div>
           <div>
             <div class="ai-loop-title">Growth Agent — Autonomous Content Pipeline</div>
-            <div class="ai-loop-body">4 Cloud Run jobs running continuously. Publishes <strong>240 SEO-optimized posts per month</strong> to kinnect.club — zero human intervention, zero incremental cost. Built for both traditional search and LLM-indexed discovery. As AI assistants become the primary way families discover products, Kinnect is already in the training data, the live index, and the answer.</div>
+            <div class="ai-loop-body">4 Cloud Run jobs running continuously. Publishes <strong>240 SEO-optimized posts per month</strong> — zero human intervention, zero incremental cost. Built for both traditional search and LLM-indexed discovery. As AI assistants become the primary way families discover products, Kinnect is already in the training data, the live index, and the answer.</div>
           </div>
         </div>
         <div class="ai-loop-row">
           <div class="ai-loop-num">03</div>
           <div>
             <div class="ai-loop-title">Echo AI — Personalized Daily Connection</div>
-            <div class="ai-loop-body">AI-generated daily prompts tailored to each specific family relationship via Customer.io. Not a generic notification — a contextual nudge that knows your family's history. 80% onboarding completion rate proves the personalization works. As voice data compounds, Echo becomes the most relevant daily communication any family receives.</div>
+            <div class="ai-loop-body">AI-generated daily prompts tailored to each specific family relationship. Not a generic notification — a contextual nudge that knows your family's history. 80% onboarding completion rate proves the personalization works.</div>
           </div>
         </div>
         <div class="ai-loop-row">
           <div class="ai-loop-num">04</div>
           <div>
             <div class="ai-loop-title">The LLM Discovery Bet</div>
-            <div class="ai-loop-body">The next generation of family product discovery won't happen through Google — it will happen through AI assistants answering <em>"what should I use to preserve my family's stories?"</em> Kinnect is already building to win that question: 240 indexed posts/month, structured family data LLMs can cite, and a brand narrative that answers the emotional query precisely. An organic moat compounding monthly at no paid media cost.</div>
+            <div class="ai-loop-body">The next generation of family product discovery won't happen through Google — it will happen through AI assistants answering <em>"what should I use to preserve my family's stories?"</em> Kinnect is already building to win that question: 240 indexed posts/month, structured family data LLMs can cite, a brand narrative that answers the emotional query precisely.</div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- VC LENS -->
-    <div class="section">
-      <div class="section-title">The Questions Every Investor Will Ask</div>
-      <div class="card" style="padding:0.75rem 1.5rem;">
-        <div class="risk-row">
-          <div class="risk-dot"></div>
-          <div><div class="risk-title">"Show me the founder who can't NOT build this."</div><div class="risk-body">Omar watched his grandfather lose his memories to dementia for ten years and built Kinnect while his friend Brandon was dying. Byron has been brought back to life twice and thinks about what he'll leave his children. This is a mission, not a market bet. The team is living the problem.</div></div>
-        </div>
-        <div class="risk-row">
-          <div class="risk-dot"></div>
-          <div><div class="risk-title">"Who is this actually for, and can you reach them?"</div><div class="risk-body">First-generation, multicultural, geographically distributed families — the majority of American families — are the most underserved by existing memory platforms. Omar is one. Kelsey, based in Puerto Rico, ensures the product reflects these families at every layer. Multilingual platform. Android-first global reach.</div></div>
-        </div>
-        <div class="risk-row">
-          <div class="risk-dot"></div>
-          <div><div class="risk-title">"Where's the technical moat?"</div><div class="risk-body">Octopus is a family intelligence graph that compounds daily. The Growth Agent publishes 240 LLM-indexed posts/month at zero marginal cost. Voice recordings and relationship data create a content moat no incumbent can replicate retroactively. The AI infrastructure was built first — the product runs on top of it.</div></div>
-        </div>
-        <div class="risk-row">
-          <div class="risk-dot"></div>
-          <div><div class="risk-title">"What about data privacy liability?"</div><div class="risk-body">Kinnect's data model is consent-first and family-owned. Families choose what to store, who sees it, and what Octopus can access. No advertising means no incentive to exploit the data. Privacy is the product promise AND the business model — they reinforce each other.</div></div>
         </div>
       </div>
     </div>
@@ -1027,7 +1075,7 @@
       <div class="section-title">Market Opportunity</div>
       <div class="card">
         <p>
-          <strong>TAM — $50B+:</strong> Family memory preservation, private family connection, digital estate documentation, and family wellness. 50%+ of Americans report feeling lonely — the U.S. Surgeon General declared it a public health epidemic in 2023. Senior living: 15,000+ communities, 1M+ residents. Estate planning: $1.5B market at 12.3% CAGR. Employee benefits: caregiving is a leading productivity issue for employers.<br><br>
+          <strong>TAM — $50B+:</strong> Family memory preservation, private family connection, digital estate documentation, and family wellness. 50%+ of Americans report feeling lonely — the U.S. Surgeon General declared it a public health epidemic in 2023. Senior living: 15,000+ communities, 1M+ residents. Estate planning: $1.5B market at 12.3% CAGR.<br><br>
           <strong>SAM — ~$8B:</strong> U.S. families with aging parents or young children actively seeking private digital alternatives to Meta, Google Photos, and Dropbox.<br><br>
           <strong>SOM — 18-month:</strong> 5,000–10,000 paying families at $50–$80/yr = $250K–$800K ARR from B2C alone. Plus B2B: senior living, will/estate, brand, and HR wellness channels.<br><br>
           <strong>$370M+ in adjacent VC</strong> proves investor conviction: Empathy ($162M), Trust &amp; Will ($82.5M), Wealth.com ($84M). None built what Kinnect is building. <strong>Nobody has built Heart + Head + daily habit + AI layer. Until now.</strong>
@@ -1038,7 +1086,7 @@
     <!-- COMPETITION -->
     <div class="section">
       <div class="section-title">Competitive Landscape</div>
-      <div class="card" style="padding:0.75rem 1.5rem;margin-bottom:12px;">
+      <div class="card" style="padding:0.75rem 1.5rem;margin-bottom:10px;">
         <table class="comp-table">
           <thead>
             <tr>
@@ -1055,38 +1103,38 @@
             <tr class="ours">
               <td>Kinnect ✦</td>
               <td>Memory + docs + daily connection</td>
-              <td><span class="badge b-accent">Yes</span></td>
-              <td><span class="badge b-accent">Yes</span></td>
-              <td><span class="badge b-accent">Octopus</span></td>
-              <td><span class="badge b-accent">Yes</span></td>
-              <td><span class="badge b-accent">iOS + Android + Web</span></td>
+              <td><span class="badge b-green">Yes</span></td>
+              <td><span class="badge b-green">Yes</span></td>
+              <td><span class="badge b-green">Octopus</span></td>
+              <td><span class="badge b-green">Yes</span></td>
+              <td><span class="badge b-green">iOS + Android + Web</span></td>
             </tr>
             <tr>
               <td>StoryWorth</td>
               <td>Email-based life stories</td>
-              <td><span class="badge b-mid">Partial</span></td>
+              <td><span class="badge b-warm">Partial</span></td>
               <td><span class="badge b-outline">No</span></td>
               <td><span class="badge b-outline">No</span></td>
-              <td><span class="badge b-mid">Yes</span></td>
+              <td><span class="badge b-warm">Yes</span></td>
               <td><span class="badge b-outline">Web + print</span></td>
             </tr>
             <tr>
               <td>Remento</td>
               <td>Audio biography</td>
-              <td><span class="badge b-mid">Audio only</span></td>
+              <td><span class="badge b-warm">Audio only</span></td>
               <td><span class="badge b-outline">No</span></td>
-              <td><span class="badge b-mid">Prompts</span></td>
-              <td><span class="badge b-mid">Yes</span></td>
+              <td><span class="badge b-warm">Prompts</span></td>
+              <td><span class="badge b-warm">Yes</span></td>
               <td><span class="badge b-outline">iOS only</span></td>
             </tr>
             <tr>
               <td>FamilyAlbum / Tinybeans</td>
               <td>Private photo sharing</td>
-              <td><span class="badge b-mid">Photos only</span></td>
+              <td><span class="badge b-warm">Photos only</span></td>
               <td><span class="badge b-outline">No</span></td>
               <td><span class="badge b-outline">No</span></td>
-              <td><span class="badge b-mid">Yes</span></td>
-              <td><span class="badge b-mid">iOS + Android</span></td>
+              <td><span class="badge b-warm">Yes</span></td>
+              <td><span class="badge b-warm">iOS + Android</span></td>
             </tr>
             <tr>
               <td>Trust &amp; Will / Gentreo</td>
@@ -1094,7 +1142,7 @@
               <td><span class="badge b-outline">No</span></td>
               <td><span class="badge b-dark">Yes</span></td>
               <td><span class="badge b-outline">No</span></td>
-              <td><span class="badge b-mid">Yes</span></td>
+              <td><span class="badge b-warm">Yes</span></td>
               <td><span class="badge b-outline">Web only</span></td>
             </tr>
             <tr>
@@ -1104,16 +1152,7 @@
               <td><span class="badge b-outline">No</span></td>
               <td><span class="badge b-outline">No</span></td>
               <td><span class="badge b-outline">Sells data</span></td>
-              <td><span class="badge b-mid">Web + mobile</span></td>
-            </tr>
-            <tr>
-              <td>kinnect.org</td>
-              <td>Children's literacy nonprofit</td>
-              <td><span class="badge b-outline">Unrelated</span></td>
-              <td><span class="badge b-outline">No</span></td>
-              <td><span class="badge b-outline">No</span></td>
-              <td><span class="badge b-mid">N/A</span></td>
-              <td><span class="badge b-outline">Web only</span></td>
+              <td><span class="badge b-warm">Web + mobile</span></td>
             </tr>
             <tr>
               <td>Meta Groups / Memories</td>
@@ -1122,13 +1161,13 @@
               <td><span class="badge b-outline">No</span></td>
               <td><span class="badge b-outline">No</span></td>
               <td><span class="badge b-outline">Ad-supported</span></td>
-              <td><span class="badge b-mid">iOS + Android + Web</span></td>
+              <td><span class="badge b-warm">iOS + Android + Web</span></td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="note">
-        <strong>The space is fragmented — by design.</strong> Every competitor solved one thing well. Storage tools have no engagement. Social platforms have no privacy. Memory tools have no documents. Estate tools have no emotion. The fragmentation is the problem Kinnect solves — by becoming the trusted connector between all of them. The switching cost after 12 months of irreplaceable family content is not inconvenient. It's heartbreaking.
+        <strong>The space is fragmented — by design.</strong> Every competitor solved one thing well. Storage tools have no engagement. Social platforms have no privacy. Memory tools have no documents. Estate tools have no emotion. The switching cost after 12 months of irreplaceable family content is not inconvenient. It's heartbreaking.
       </div>
     </div>
 
@@ -1138,11 +1177,11 @@
       <div class="card" style="padding:0.75rem 1.5rem;">
         <div class="risk-row">
           <div class="risk-dot"></div>
-          <div><div class="risk-title">Consumer distribution at scale</div><div class="risk-body">B2B partnerships create high-intent inbound at near-zero CAC. Invite-only exclusivity + 30-node Family Tree turn every signup into a network multiplier.</div></div>
+          <div><div class="risk-title">Consumer distribution at scale</div><div class="risk-body">B2B partnerships create high-intent inbound at near-zero CAC. Invite-only exclusivity + 30-node Family Tree turn every signup into a network multiplier. Omar's organic content background eliminates paid dependency.</div></div>
         </div>
         <div class="risk-row">
           <div class="risk-dot"></div>
-          <div><div class="risk-title">Scaling from early traction to mass adoption</div><div class="risk-body">iOS and Android launch this month, meeting partner distribution needs and reactivating 1,300+ existing installs and 2,750 email subscribers. The momentum from 9 months of building is accelerating into launch — not starting from zero.</div></div>
+          <div><div class="risk-title">Scaling from early traction to mass adoption</div><div class="risk-body">iOS and Android launch this month, reactivating 1,300+ existing installs and 2,750 email subscribers. The momentum from 9 months of building is accelerating into launch — not starting from zero.</div></div>
         </div>
         <div class="risk-row">
           <div class="risk-dot"></div>
@@ -1150,18 +1189,22 @@
         </div>
         <div class="risk-row">
           <div class="risk-dot"></div>
-          <div><div class="risk-title">Multi-generational UX</div><div class="risk-body">Web platform addresses accessibility for older members. Multilingual team by design. Kelsey ensures the product reflects diverse, geographically distributed family realities.</div></div>
+          <div><div class="risk-title">Multi-generational UX</div><div class="risk-body">Web platform addresses accessibility for older members. Multilingual team by design. Kelsey ensures the product reflects diverse, geographically distributed family realities. Android-first global reach.</div></div>
         </div>
         <div class="risk-row">
           <div class="risk-dot"></div>
-          <div><div class="risk-title">Partnership execution</div><div class="risk-body">Kelsey (ex-National Geographic) is dedicated to activation. K4Connect and FastWill integrations are in progress. 25% of this raise is specifically for Partnerships execution.</div></div>
+          <div><div class="risk-title">Data privacy liability</div><div class="risk-body">Consent-first and family-owned. Families choose what to store, who sees it, and what Octopus can access. No advertising means no incentive to exploit the data. Privacy is the product promise AND the business model.</div></div>
+        </div>
+        <div class="risk-row">
+          <div class="risk-dot"></div>
+          <div><div class="risk-title">Partnership execution</div><div class="risk-body">Kelsey (ex-National Geographic) is dedicated to activation. K4Connect and FastWill integrations are in progress. 25% of this raise is specifically allocated to partnerships execution.</div></div>
         </div>
       </div>
     </div>
 
     <!-- THE ASK -->
     <div class="section">
-      <div class="ask-box">
+      <div class="card-dark">
         <div class="ask-hero">$1,000,000</div>
         <div class="ask-sub">Pre-money SAFE · Pre-Seed Round · Building on $480K Friends &amp; Family already closed</div>
         <div class="ask-grid">
@@ -1169,9 +1212,9 @@
             <div class="ask-col-title">Use of Funds</div>
             <div class="ask-list">
               <strong>50%</strong> · Product &amp; Engineering<br>
-              <span style="color:#665E56;font-size:11px;">Octopus AI, Vault, Family Tree</span><br>
+              <span style="color:rgba(255,255,255,0.35);font-size:11px;">Octopus AI, Vault, Family Tree</span><br>
               <strong>25%</strong> · Growth &amp; Partnerships<br>
-              <span style="color:#665E56;font-size:11px;">Activate K4Connect, FastWill, Gentreo</span><br>
+              <span style="color:rgba(255,255,255,0.35);font-size:11px;">Activate K4Connect, FastWill, Gentreo</span><br>
               <strong>15%</strong> · Team &amp; Operations<br>
               <strong>10%</strong> · Reserve
             </div>
@@ -1187,150 +1230,122 @@
             </div>
           </div>
         </div>
-        <div style="margin-top:20px;padding-top:16px;border-top:1px solid #2E2C28;font-size:13px;color:#888884;font-style:italic;line-height:1.7;">
-          "Every family has a story worth keeping. We're building the place they keep it." &nbsp;— <span style="color:#A8A49D;">omar@kinnect.club</span>
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.1);font-size:13px;color:rgba(255,255,255,0.4);font-style:italic;line-height:1.7;">
+          "Every family has a story worth keeping. We're building the place they keep it." &nbsp;— <span style="color:rgba(255,255,255,0.6);">omar@kinnect.club</span>
         </div>
       </div>
     </div>
 
-
-    <!-- EMAIL CAPTURE -->
-    <div class="email-capture">
-      <div>
-        <div class="email-capture-text">Interested in learning more?</div>
-        <div class="email-capture-sub">Leave your email and Omar will follow up directly.</div>
-      </div>
-      <form class="email-form" action="https://formsubmit.co/omar@kinnect.club" method="POST" id="invest-form">
-        <input type="hidden" name="_subject" value="Investment Memo — New Interest">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://investment.kinnect.club?thankyou=1">
-        <input type="text" name="name" placeholder="Your name" required>
-        <input type="email" name="email" placeholder="Your email" required>
-        <button type="submit">Connect →</button>
-      </form>
-    </div>
-
-  </div><!-- /body -->
+  </div>
 
   <div class="footer">
     <span>Kinnect · Investment Memo · Pre-Seed Round · April 2026</span>
     <span>omar@kinnect.club &nbsp;·&nbsp; <a href="https://www.kinnect.club" class="ext-link" target="_blank">kinnect.club ↗</a></span>
   </div>
 
-</div><!-- /page -->
+</div>
 
 <script>
-(function() {
+(function () {
   var STORAGE_KEY = 'kinnect_memo_unlocked';
-  var visitorName = '';
+  var visitorName  = '';
   var visitorEmail = '';
   var start = Date.now();
 
-  // ── Gate logic ─────────────────────────────────────────────
+  // ── Gate ─────────────────────────────────────────────────────
   function unlockMemo() {
     var overlay = document.getElementById('gate-overlay');
     if (overlay) overlay.style.display = 'none';
+    document.body.classList.remove('gate-open');
+    // Always land at the top on mobile
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }
 
   function gateSubmit() {
-    var nameEl = document.getElementById('gate-name');
+    var nameEl  = document.getElementById('gate-name');
     var emailEl = document.getElementById('gate-email');
-    var btn = document.getElementById('gate-btn');
+    var btn     = document.getElementById('gate-btn');
 
-    var name = nameEl ? nameEl.value.trim() : '';
+    var name  = nameEl  ? nameEl.value.trim()  : '';
     var email = emailEl ? emailEl.value.trim() : '';
 
-    if (!name || !email || !email.includes('@')) {
-      if (emailEl) emailEl.focus();
-      return;
-    }
+    if (!name) { if (nameEl) nameEl.focus(); return; }
+    if (!email || !email.includes('@')) { if (emailEl) emailEl.focus(); return; }
 
-    btn.disabled = true;
+    btn.disabled    = true;
     btn.textContent = 'Opening…';
 
-    visitorName = name;
+    visitorName  = name;
     visitorEmail = email;
 
-    // Notify Omar immediately
     notify(
       name + ' (' + email + ') opened the investment memo',
       'Investment Memo — New View: ' + name,
       name, email
     );
 
-    // Store so returning visits skip the gate
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({name: name, email: email, ts: Date.now()})); } catch(e){}
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ name: name, email: email, ts: Date.now() }));
+    } catch (e) {}
 
     unlockMemo();
   }
 
-  // Expose to onclick
   window.gateSubmit = gateSubmit;
 
-  // Allow Enter key in gate inputs
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function (e) {
     var overlay = document.getElementById('gate-overlay');
     if (overlay && overlay.style.display !== 'none' && e.key === 'Enter') gateSubmit();
   });
 
-  // ── Notify helper (FormSubmit AJAX endpoint) ────────────────
+  // ── Notify ───────────────────────────────────────────────────
   function notify(message, subject, name, email) {
     var data = new FormData();
-    data.append('name', name || 'Visitor');
-    data.append('email', email || 'noreply@kinnect.club');
-    data.append('message', message);
+    data.append('name',     name  || 'Visitor');
+    data.append('email',    email || 'noreply@kinnect.club');
+    data.append('message',  message);
     data.append('_subject', subject);
     data.append('_captcha', 'false');
-    fetch('https://formsubmit.co/ajax/omar@kinnect.club', {method:'POST', body:data})
-      .catch(function(){});
+    fetch('https://formsubmit.co/ajax/omar@kinnect.club', { method: 'POST', body: data }).catch(function () {});
   }
 
-  // ── Time-on-page tracking ───────────────────────────────────
+  // ── Time-on-page ─────────────────────────────────────────────
   var timeSent = false;
   function sendTime() {
     if (timeSent) return;
     timeSent = true;
     var seconds = Math.round((Date.now() - start) / 1000);
     if (seconds < 10) return;
-    var name = visitorName || 'Unknown visitor';
-    var email = visitorEmail || 'noreply@kinnect.club';
     notify(
-      name + ' spent ' + seconds + ' seconds reading the investment memo on investment.kinnect.club',
-      'Investment Memo — ' + seconds + 's read by ' + name,
-      name, email
+      (visitorName || 'Unknown') + ' spent ' + seconds + 's reading the investment memo',
+      'Investment Memo — ' + seconds + 's read by ' + (visitorName || 'Unknown'),
+      visitorName || 'Unknown', visitorEmail || 'noreply@kinnect.club'
     );
   }
 
   window.addEventListener('beforeunload', sendTime);
-  document.addEventListener('visibilitychange', function() {
+  document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden') sendTime();
   });
 
-  // ── On load: check if already unlocked ─────────────────────
-  window.addEventListener('DOMContentLoaded', function() {
+  // ── Returning visitor ─────────────────────────────────────────
+  window.addEventListener('DOMContentLoaded', function () {
     try {
       var stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         var data = JSON.parse(stored);
-        // Valid for 30 days
         if (data && data.ts && (Date.now() - data.ts) < 30 * 24 * 60 * 60 * 1000) {
-          visitorName = data.name || '';
+          visitorName  = data.name  || '';
           visitorEmail = data.email || '';
           unlockMemo();
           return;
         }
       }
-    } catch(e){}
-    // Show gate (already visible by default via CSS)
+    } catch (e) {}
+    // Gate visible (body.gate-open already set)
   });
-
-  // ── Bottom form thank-you state ─────────────────────────────
-  if (window.location.search.indexOf('thankyou=1') !== -1) {
-    window.addEventListener('DOMContentLoaded', function() {
-      var form = document.getElementById('invest-form');
-      if (form) form.innerHTML = '<div style="font-size:14px;font-weight:600;color:var(--accent);padding:8px 0;">✓ Got it — Omar will be in touch soon.</div>';
-    });
-  }
 })();
 </script>
 
